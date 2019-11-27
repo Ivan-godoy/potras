@@ -1,5 +1,5 @@
 <template>
-    <h1>Aplicacion de Vue</h1>
+    <h1>Potras</h1>
 </template>
 
 <script>
