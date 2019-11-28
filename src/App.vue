@@ -1,10 +1,16 @@
 <template>
-    <h1>Potras</h1>
+    <div>
+        <h6>Bienvenidos</h6>
+        <Nav/>
+        <router-view/>
+    </div>
 </template>
 
 <script>
+    import Nav from "./components/Nav";
     export default {
-        name: "App"
+        name: "App",
+        components: {Nav}
     }
 </script>
 

@@ -2,9 +2,9 @@
   "name": "potras",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "electron electron.js",
+    "start": "electron main.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
