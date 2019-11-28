@@ -1,5 +1,5 @@
 <template>
-
+    <h2>Hola Inge!!!</h2>
 </template>
 
 <script>
