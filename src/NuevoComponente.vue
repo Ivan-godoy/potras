@@ -1,5 +1,8 @@
 <template>
-    <h2>Hola Inge!!!</h2>
+    <div>
+        <h1>Conflicto</h1>
+        <p>Esto debería de causar un conflicto</p>
+    </div>
 </template>
 
 <script>
