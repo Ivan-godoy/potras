@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <h6>Bienvenidos</h6>
+    <div id="app">
         <Nav/>
         <router-view/>
     </div>

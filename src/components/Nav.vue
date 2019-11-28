@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Lo mas reciente</a>
+                        <router-link class="nav-link" to="/reciente">Lo mas reciente</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/equipos">Equipos</router-link>
@@ -26,6 +26,7 @@
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
+
                 </ul>
             </div>
         </nav>
