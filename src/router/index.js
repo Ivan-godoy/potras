@@ -4,6 +4,7 @@ import App from "../App";
 import Equipos from "../view/Equipos";
 import Reciente from "../view/Reciente";
 import Home from "../view/Home";
+import Login from "../view/Login";
 
 Vue.use(VueRouter)
 
@@ -11,7 +12,7 @@ const routes = [
     {
         path: '/',
         name: 'index',
-        component: Home
+        component: Login
     },
     {
         path: '/equipos',

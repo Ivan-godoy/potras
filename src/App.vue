@@ -1,23 +1,14 @@
 <template>
     <div id="app">
-        <div id="Nav">
-            <NavBar/>
-        </div>
-        <div id="Sidenav">
-            <Nav/>
-        </div>
-        <div id="vistas">
-            <router-view/>
-        </div>
+        <Login/>
     </div>
 </template>
 
 <script>
-    import Nav from "./components/Nav";
-    import NavBar from "./components/NavBar";
+    import Login from "./view/Login";
     export default {
         name: "App",
-        components: {Nav, NavBar}
+        components: {Login}
     }
 </script>
 
