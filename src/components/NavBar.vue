@@ -4,7 +4,7 @@
             <div slot="title">
                 <vs-navbar-title>
                     Este texto va cambiar cuando se cmabie de seccion
-                    <vs-button  @click="active=!active" color="primary" type="border" icon="reorder"></vs-button>
+                    <vs-button @click="$store.commit('switchNav')" type="line" icon="reorder"></vs-button>
                 </vs-navbar-title>
             </div>
 
@@ -27,6 +27,7 @@
         data:()=>({
             activeItem: 0
         })
+
     }
 </script>
 

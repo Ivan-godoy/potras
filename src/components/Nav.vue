@@ -2,7 +2,6 @@
 
     <div id="parentx">
 
-        <vs-button @click="active=!active" color="primary" type="filled">Open Sidebar</vs-button>
         <vs-sidebar parent="body" default-index="1"  color="primary" class="sidebarx" spacer v-model="active">
 
             <div class="header-sidebar" slot="header">
@@ -15,15 +14,15 @@
 
             </div>
 
-            <vs-sidebar-item index="1" icon="question_answer">
-                Dashboard
+            <vs-sidebar-item index="1" to="/equipos" icon="question_answer">
+                Dashboard {{$store.state.count}}
             </vs-sidebar-item>
 
-            <vs-sidebar-item index="2" icon="gavel">
+            <vs-sidebar-item to="/recientes" index="2" icon="gavel">
                 History
             </vs-sidebar-item>
 
-            <vs-divider icon="person" position="left">
+            <vs-divider icon="person"  position="left">
                 User
             </vs-divider>
 
@@ -50,9 +49,17 @@
 <script>
   export default {
     name: 'Nav',
-      data:()=>({
-          active:true,
-      })
+      computed: {
+        active: {
+            get(){
+                return this.$store.state.navActivo
+            },
+            set(NuevoValor){
+
+                this.$store.commit('switchNav')
+            }
+        }
+      }
   }
 </script>
 
