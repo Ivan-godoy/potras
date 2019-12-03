@@ -1,41 +1,51 @@
 <template>
-    <div class="d-flex justify-content-center">
-        <div class="row">
-            <div class="col">
-                <div class="card" >
-                    <div class="card-header">
-                        <h6 class="text-center font-weight-boldn">Formulario de creacion de ciudad</h6>
-                    </div>
-                    <div class="card-body">
-                        <form action="">
-                            <div class="form-group">
-                                <label for="">Nombre de la ciudad</label>
-                                <input type="text" class="form-control" placeholder="La Ceiba">
-                            </div>
-                            <div class="form-group">
-                                <vs-button color="warning" type="border">Guardar Ciudad</vs-button>
-                            </div>
-                        </form>
-                    </div>
+    <vs-row vs-justify="center">
+        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="3">
+            <vs-card actionable class="cardx">
+                <div slot="header">
+                    <h3>
+                        Creacion de ciudades
+                    </h3>
                 </div>
-            </div>
+                <div>
 
-            <div class="col">
+                    <div class="centerx">
+                        <vs-input label-placeholder="Nombre de la Ciudad" v-model="NombreCiudad"/>
+                    </div>
+
+                </div>
+                <div slot="footer">
+                    <vs-row vs-justify="flex-end">
+                        <vs-button color="success" type="filled" icon="done">Guardar Ciudad</vs-button>
+                    </vs-row>
+                </div>
+            </vs-card>
+        </vs-col>
+        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="5">
+            <vs-card actionable class="cardx">
                 <TablaCiudades/>
-            </div>
-        </div>
-    </div>
+            </vs-card>
+        </vs-col>
+    </vs-row>
 </template>
 
 <script>
     import TablaCiudades from "../../Tablas/TablaCiudades";
     export default {
         name: "Ciudad",
-        components:{TablaCiudades}
+        components:{TablaCiudades},
+        data(){
+            return {
+                NombreCiudad:'',
+            }
+        }
     }
 </script>
 
 <style scoped lang="stylus">
-    .row
-        width 900px
+    .default-input
+        .inputx
+            margin 10px
+    .tarjetas
+        padding 30px
 </style>
