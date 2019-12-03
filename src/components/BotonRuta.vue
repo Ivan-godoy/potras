@@ -1,10 +1,12 @@
 <template>
+    <div>
 
+    </div>
 </template>
 
 <script>
     export default {
-        name: "Boton-Seleccion"
+        name: "BotonRuta"
     }
 </script>
 

@@ -1,26 +1,19 @@
 import Vue from'vue'
 import VueRouter from 'vue-router'
 import App from "../App";
-import Equipos from "../view/Equipos";
-import Reciente from "../view/Reciente";
 import Home from "../view/Home";
+import Creacion from "../view/Creacion";
+import Gestiones from "../view/Gestiones";
+import Temporada from "../view/Temporada";
 
 Vue.use(VueRouter)
 
 const routes = [
-    {
-        path: '/',
-        name: 'index',
-        component: Home
-    },
-    {
-        path: '/equipos',
-        name: 'equipos',
-        component: Equipos
-    },
-    {
-        path: '/reciente', name:'reciente', component:Reciente
-    }
+    {path: '/', name: 'index', component: Home},
+    {path: '/creacion', name: 'creacion', component: Creacion},
+    {path: '/gestiones', name:'gestiones',component: Gestiones},
+    {path: '/temporada', name:'temporada',component: Temporada}
+
 ];
 
 const router = new VueRouter({
