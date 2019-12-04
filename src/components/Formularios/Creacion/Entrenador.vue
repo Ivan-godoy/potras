@@ -60,10 +60,11 @@
         components:{TablaEntrenador},
         data(){
             return {
-                NombreEquipo:'',
-                Esquema: '',
-                SelectCiudad: '',
-                FechaFundacion: '',
+                NombreEntrenador:'',
+                NacionalidadEntrenador: '',
+                LugarNacimiento: '',
+                FechaNacimiento: '',
+                SelectEquipos: '',
                 options1:[
                     {text:'La Ceiba',value:0},
                     {text:'Olanchito',value:2},
