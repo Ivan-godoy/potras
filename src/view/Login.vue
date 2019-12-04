@@ -1,16 +1,13 @@
 <template>
-    <div class="container-fluid bg-dark vh-100 vw-100">
+    <div class="container-fluid  vh-100 vw-100">
         <div class="row vh-100 vw-100">
-            <div class="col-9 bg-warning" id="fondo">
-
-            </div>
-            <div class="col-3 bg-light" id="form">
-                <div class="container bg-primary h-100 w-100">
-                    <div class="row bg-dark h-100">
-
+            <div class="col-9" id="fondo"></div>
+            <div class="col-3 " id="form">
+                <div class="container  h-100 w-100">
+                    <div class="row  h-100">
                         <div class="col align-self-center">
-                            <form>
-                                <div class="row form-group bg-light justify-content-center align-items-center">
+                            <form class="border p-3 shadow-lg p-3 mb-5 rounded ">
+                                <div class="row form-group  justify-content-center align-items-center">
                                     <img src="../img/logo.png" alt="" class="w-50 h-25">
                                 </div>
                                 <div class="form-group">
@@ -28,28 +25,9 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
-                            One of three columns
                         </div>
-
                     </div>
                 </div>
-
-
-                <!--<div class="container bg-primary h-100 w-100">
-                    <div class="row h-100 w-100 justify-content-center bg-dark">
-                        <form action="#" class="form align-self-center w-100">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password" class="form-control">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </form>
-                    </div>
-                </div>-->
             </div>
         </div>
     </div>
@@ -59,24 +37,53 @@
 
 <script>
     export default {
-        name: "Login"
-    }
-    if (screen.width < 1024)
-        console.log("Pequeña");
+        name: "Login",
 
-    else
-    if (screen.width < 1280)
-        console.log("Mediana")
-    else
-        console.log("Grande")
+    }
+
+    if(screen.width < 1024){
+        console.log("peque")
+    }
 
 </script>
 
 <style scoped>
-    .abs-center {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
+    #fondo{
+        background-image: url("../img/ben-hershey-ChI4eUGTpeY-unsplash.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    @media (max-width: 992px) {
+        .login100-form {
+            width: 50%;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .login100-more {
+            width: 50%;
+        }
+        #fondo {
+            display: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .login100-form {
+            width: 100%;
+        }
+
+        #fondo {
+            display: none;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .login100-form {
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 70px;
+        }
     }
 </style>
