@@ -53,7 +53,6 @@
             </template>
         </vs-table>
 
-        <pre>{{ selected }}</pre>
     </div>
 </template>
 

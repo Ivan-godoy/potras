@@ -7,18 +7,22 @@
                         Creacion de ciudades
                     </h3>
                 </div>
-                <div>
+                <form
+                    action="#"
+                    >
+                    <div>
 
-                    <div class="centerx">
-                        <vs-input label-placeholder="Nombre de la Ciudad" v-model="NombreCiudad"/>
+                        <div class="centerx">
+                            <vs-input label-placeholder="Nombre de la Ciudad" v-model="NombreCiudad"/>
+                        </div>
+
                     </div>
-
-                </div>
-                <div slot="footer">
-                    <vs-row vs-justify="flex-end">
-                        <vs-button color="success" type="filled" icon="done">Guardar Ciudad</vs-button>
-                    </vs-row>
-                </div>
+                    <div slot="footer">
+                        <vs-row vs-justify="flex-end">
+                            <vs-button color="success" type="filled" icon="done">Guardar Ciudad</vs-button>
+                        </vs-row>
+                    </div>
+                </form>
             </vs-card>
         </vs-col>
         <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="5">

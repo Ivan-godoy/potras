@@ -20,6 +20,7 @@
                 </vs-tr>
             </template>
         </vs-table>
+
     </div>
 </template>
 

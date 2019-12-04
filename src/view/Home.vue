@@ -1,10 +1,17 @@
 <template>
-    <h5>Home</h5>
+    <div>
+        <Nav/>
+        <NavBar/>
+    </div>
+
 </template>
 
 <script>
+    import Nav from "../components/Nav";
+    import NavBar from "../components/NavBar";
     export default {
-        name: "Home"
+        name: "Home",
+        components: {Nav, NavBar}
     }
 </script>
 
