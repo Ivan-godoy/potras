@@ -4,35 +4,35 @@
         <div>
             <vs-tab @click="colorx = 'success'" label="Equipo">
                 <div class="con-tab-ejemplo">
-                    Equipo
+                    <Equipo/>
                 </div>
             </vs-tab>
         </div>
         <div>
-            <vs-tab @click="colorx = 'danger'" label="Entrenador">
+            <vs-tab @click="colorx = 'success'" label="Entrenador">
                 <div class="con-tab-ejemplo">
                     <Entrenador/>
                 </div>
             </vs-tab>
         </div>
         <div>
-            <vs-tab @click="colorx = 'warning'" label="Ciudad">
+            <vs-tab @click="colorx = 'success'" label="Ciudad">
                 <div class="con-tab-ejemplo">
-                    <Ciudad/>
+                    Ciudad
                 </div>
             </vs-tab >
         </div>
         <div>
-            <vs-tab @click="colorx = 'dark'" label="Estadio">
+            <vs-tab @click="colorx = 'success'" label="Estadio">
                 <div class="con-tab-ejemplo">
                     Estadio
                 </div>
             </vs-tab>
         </div>
         <div>
-            <vs-tab @click="colorx = 'warning'" label="Jugador">
+            <vs-tab @click="colorx = 'success'" label="Jugador">
                 <div class="con-tab-ejemplo">
-                    Jugador
+                    <Jugador/>
                 </div>
             </vs-tab>
         </div>
@@ -41,15 +41,15 @@
 </template>
 
 <script>
-    import Ciudad from "../Formularios/Creacion/Ciudad";
-    import Entrenador from "../Formularios/Creacion/Entrenador";
-
-    export default {
+    import Equipo from "../Formularios/Gestiones/Equipo";
+    import Entrenador from "../Formularios/Gestiones/Entrenador";
+    import Jugador from "../Formularios/Gestiones/Jugador"
+        export default {
         name: "PestanaGestion",
         data:()=>({
             colorx: 'success'
         }),
-        components: {Ciudad, Entrenador}
+        components: {Equipo, Entrenador, Jugador}
     }
 </script>
 
