@@ -28,10 +28,7 @@
                         Jugadores
                     </vs-th>
                     <vs-th>
-                        Modificar
-                    </vs-th>
-                    <vs-th>
-                        Eliminar
+                        Acciones
                     </vs-th>
                 </template>
 
@@ -59,14 +56,14 @@
                             {{data[indextr].jugadores}}
                         </vs-td>
                         <vs-td>
-                            <div>
-                                <vs-button vs-type="gradient" size="medium" color="success" icon="create"></vs-button>
-                            </div>
-                        </vs-td>
-                        <vs-td>
-                            <div>
-                                <vs-button vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
-                            </div>
+                            <vs-row vs-w="12">
+                                <div>
+                                    <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+                                        <vs-button vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
+                                        <vs-button vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                    </vs-col>
+                                </div>
+                            </vs-row>
                         </vs-td>
                     </vs-tr>
                 </template>
