@@ -60,9 +60,8 @@
                             <vs-td :data="data[indextr].estatura">
                                 {{data[indextr].estatura}}
                             </vs-td>
-                            <vs-td :data="data[indextr].imagen">
-                                {{data[indextr].imagen}}
-                            </vs-td>
+                            <vs-avatar :badge="tr.id" size="50px"
+                                       :src="`https://thumbs.dreamstime.com/z/silueta-de-un-jugador-f%C3%BAtbol-del-atleta-que-juega-con-una-bola-en-108740657.jpg`"/>
                             <vs-td :data="data[indextr].posicion">
                                 {{data[indextr].posicion}}
                             </vs-td>
@@ -96,8 +95,16 @@
                     "lugar_nacimiento": "La Ceiba",
                     "peso": "209 lbs",
                     "estatura": "1.86",
-                    "imagen": "imagen.jpg",
-                    "posicion": "delantero",
+                    "posicion": "Delantero",
+                },
+                {
+                    "nombre": "Marcelo",
+                    "fecha_nacimiento": "3 de abril 1983",
+                    "nacionalidad": "Brasileña",
+                    "lugar_nacimiento": "Brasilia",
+                    "peso": "180 lbs",
+                    "estatura": "1.77",
+                    "posicion": "Lateral",
                 },
             ]
         })

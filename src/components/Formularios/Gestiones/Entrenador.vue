@@ -49,9 +49,8 @@
                             <vs-td :data="data[indextr].fecha_nacimiento">
                                 {{data[indextr].fecha_nacimiento}}
                             </vs-td>
-                            <vs-td :data="data[indextr].foto_entrenador">
-                                {{data[indextr].foto_entrenador}}
-                            </vs-td>
+                            <vs-avatar :badge="tr.id" size="50px"
+                                       :src="`https://img.pixers.pics/pho_wat(s3:700/FO/80/15/73/22/700_FO80157322_1fbc30669b67c1f9ef5c4a38cc2aceca.jpg,498,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,278,650,jpg)/vinilos-entrenador-de-futbol-con-la-bola.jpg.jpg`"/>
                             <vs-td :data="data[indextr].equipo">
                                 {{data[indextr].equipo}}
                             </vs-td>

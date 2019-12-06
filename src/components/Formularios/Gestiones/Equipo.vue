@@ -1,6 +1,6 @@
 <template>
     <vs-row vs-justify="center">
-        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="7">
+        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="8">
         <div>
             <vs-table :data="users">
                 <template slot="header">
@@ -45,10 +45,8 @@
                         <vs-td :data="data[indextr].esquema">
                             {{data[indextr].esquema_habitual}}
                         </vs-td>
-
-                        <vs-td :data="data[indextr].logo">
-                            {{data[indextr].logo_equipo}}
-                        </vs-td>
+                        <vs-avatar :badge="tr.id" size="50px"
+                                   :src="`https://www.photoframemaster.com/res/templates/thumb_small/blue-star-and-gray-soccer.png`"/>
                         <vs-td :data="data[indextr].estadio">
                             {{data[indextr].estadio}}
                         </vs-td>
@@ -57,12 +55,19 @@
                         </vs-td>
                         <vs-td>
                             <vs-row vs-w="12">
-                                <div>
-                                    <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-                                        <vs-button vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
-                                        <vs-button vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                               <div>
+                                    <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
+                                        <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
+                                        <vs-popup class="holamundo"  title="Lorem ipsum dolor sit amet" :active.sync="popupActivo">
+                                            <p>Hola</p>
+                                        </vs-popup>
+                                        <vs-button @click="popupActivo=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                        <vs-popup class="holamundo"  title="Lorem ipsum dolor sit amet" :active.sync="popupActivo">
+                                            <p>HOla</p>
+                                        </vs-popup>
                                     </vs-col>
                                 </div>
+
                             </vs-row>
                         </vs-td>
                     </vs-tr>
@@ -74,6 +79,7 @@
 </template>
 
 <script>
+
     export default {
         name: "Equipo",
         data:()=>({
@@ -103,7 +109,8 @@
                     "jugadores": "24",
                 },
             ]
-        })
+
+        }),
     }
 </script>
 
