@@ -32,7 +32,7 @@
         <div>
             <vs-tab @click="colorx = 'success'" label="Jugador">
                 <div class="con-tab-ejemplo">
-                    <Jugador/>
+                    <BotonesAccion/>
                 </div>
             </vs-tab>
         </div>

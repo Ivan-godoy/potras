@@ -57,10 +57,16 @@
                             <vs-td>
                                 <vs-row vs-w="12">
                                     <div>
-                                    <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-                                            <vs-button vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
-                                            <vs-button vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
-                                    </vs-col>
+                                        <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
+                                            <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
+                                            <vs-popup class="gestion_Entrenador"  title="Editar Entrenador" :active.sync="popupActivo">
+                                                <p>Hola Guapo</p>
+                                            </vs-popup>
+                                            <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                            <vs-popup class="gesion_Entrenador"  title="Eliminar Entrenador" :active.sync="popupActivo1">
+                                                <p>Hola Guapo, ¿vas a eliminarme?</p>
+                                            </vs-popup>
+                                        </vs-col>
                                     </div>
                                 </vs-row>
                             </vs-td>
@@ -75,34 +81,38 @@
 <script>
     export default {
         name: "Entrenador",
-        data:()=>({
-            users:[
-                {
-                    "nombre": "Edgardo Argueta",
-                    "nacionalidad": "Hondureña",
-                    "lugar_nacimiento": "San Juan Pueblo",
-                    "fecha_nacimiento": "15 de Septiembre 1999",
-                    "foto_entrenador": "Argueta.jpg",
-                    "equipo": "Barcelona",
-                },
-                {
-                    "nombre": "Edgardo Argueta",
-                    "nacionalidad": "Hondureña",
-                    "lugar_nacimiento": "San Juan Pueblo",
-                    "fecha_nacimiento": "15 de Septiembre 1999",
-                    "foto_entrenador": "Argueta.jpg",
-                    "equipo": "Barcelona",
-                },
-                {
-                    "nombre": "Edgardo Argueta",
-                    "nacionalidad": "Hondureña",
-                    "lugar_nacimiento": "San Juan Pueblo",
-                    "fecha_nacimiento": "15 de Septiembre 1999",
-                    "foto_entrenador": "Argueta.jpg",
-                    "equipo": "Barcelona",
-                },
-            ]
-        })
+        data(){
+            return{
+                users:[
+                    {
+                        "nombre": "Edgardo Argueta",
+                        "nacionalidad": "Hondureña",
+                        "lugar_nacimiento": "San Juan Pueblo",
+                        "fecha_nacimiento": "15 de Septiembre 1999",
+                        "foto_entrenador": "Argueta.jpg",
+                        "equipo": "Barcelona",
+                    },
+                    {
+                        "nombre": "Edgardo Argueta",
+                        "nacionalidad": "Hondureña",
+                        "lugar_nacimiento": "San Juan Pueblo",
+                        "fecha_nacimiento": "15 de Septiembre 1999",
+                        "foto_entrenador": "Argueta.jpg",
+                        "equipo": "Barcelona",
+                    },
+                    {
+                        "nombre": "Edgardo Argueta",
+                        "nacionalidad": "Hondureña",
+                        "lugar_nacimiento": "San Juan Pueblo",
+                        "fecha_nacimiento": "15 de Septiembre 1999",
+                        "foto_entrenador": "Argueta.jpg",
+                        "equipo": "Barcelona",
+                    },
+                ],
+                popupActivo:false,
+                popupActivo1:false
+            }
+        }
     }
 </script>
 

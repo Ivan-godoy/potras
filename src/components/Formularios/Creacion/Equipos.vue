@@ -1,5 +1,4 @@
 <template>
-
     <vs-row vs-justify="center">
         <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="7">
             <vs-card actionable class="cardx" >

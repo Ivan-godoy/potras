@@ -40,8 +40,14 @@
                                 <vs-row vs-w="12">
                                     <div>
                                         <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
-                                            <vs-button vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
-                                            <vs-button vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                            <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
+                                            <vs-popup class="gestion_Estadio"  title="Editar Estadio" :active.sync="popupActivo">
+                                                <p>Hola Guapo</p>
+                                            </vs-popup>
+                                            <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                            <vs-popup class="gesion_Estadio"  title="Eliminar Estadio" :active.sync="popupActivo1">
+                                                <p>Hola Guapo, ¿vas a eliminarme?</p>
+                                            </vs-popup>
                                         </vs-col>
                                     </div>
                                 </vs-row>
@@ -57,15 +63,24 @@
 <script>
     export default {
         name: "Estadio",
-        data:()=>({
-            users:[
-                {
-                    "nombre": "Estadio Ceibeño",
-                    "capacidad": "35,000 personas",
-                    "ciudad": "La Ceiba",
-                },
-            ]
-        })
+        data(){
+            return{
+                users:[
+                    {
+                        "nombre": "Estadio Ceibeño",
+                        "capacidad": "35,000 personas",
+                        "ciudad": "La Ceiba",
+                    },
+                    {
+                        "nombre": "Estadio Ceibeño",
+                        "capacidad": "35,000 personas",
+                        "ciudad": "La Ceiba",
+                    },
+                ],
+                popupActivo:false,
+                popupActivo1:false
+            }
+        }
     }
 </script>
 

@@ -68,9 +68,15 @@
                             <vs-td>
                                 <vs-row vs-w="12">
                                     <div>
-                                        <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-                                            <vs-button vs-type="gradient"  size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
-                                            <vs-button vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                        <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
+                                            <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
+                                            <vs-popup class="gestion_Jugador"  title="Editar Jugador" :active.sync="popupActivo">
+                                                <p>Hola Guapo</p>
+                                            </vs-popup>
+                                            <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                            <vs-popup class="gestion_Jugador"  title="Eliminar Jugador" :active.sync="popupActivo1">
+                                                <p>Hola Guapo, ¿vas a eliminarme?</p>
+                                            </vs-popup>
                                         </vs-col>
                                     </div>
                                 </vs-row>
@@ -86,28 +92,32 @@
 <script>
     export default {
         name: "Jugador",
-        data:()=>({
-            users:[
-                {
-                    "nombre": "Oliver",
-                    "fecha_nacimiento": "2 de abril 1997",
-                    "nacionalidad": "Hondureña",
-                    "lugar_nacimiento": "La Ceiba",
-                    "peso": "209 lbs",
-                    "estatura": "1.86",
-                    "posicion": "Delantero",
-                },
-                {
-                    "nombre": "Marcelo",
-                    "fecha_nacimiento": "3 de abril 1983",
-                    "nacionalidad": "Brasileña",
-                    "lugar_nacimiento": "Brasilia",
-                    "peso": "180 lbs",
-                    "estatura": "1.77",
-                    "posicion": "Lateral",
-                },
-            ]
-        })
+        data(){
+            return{
+                users:[
+                    {
+                        "nombre": "Oliver",
+                        "fecha_nacimiento": "2 de abril 1997",
+                        "nacionalidad": "Hondureña",
+                        "lugar_nacimiento": "La Ceiba",
+                        "peso": "209 lbs",
+                        "estatura": "1.86",
+                        "posicion": "Delantero",
+                    },
+                    {
+                        "nombre": "Marcelo",
+                        "fecha_nacimiento": "3 de abril 1983",
+                        "nacionalidad": "Brasileña",
+                        "lugar_nacimiento": "Brasilia",
+                        "peso": "180 lbs",
+                        "estatura": "1.77",
+                        "posicion": "Lateral",
+                    },
+                ],
+                popupActivo:false,
+                popupActivo1:false
+            }
+        }
     }
 </script>
 
