@@ -32,7 +32,7 @@
                 <div>
                     <vs-tab @click="colorx = 'warning'" label="Jugador">
                         <div class="con-tab-ejemplo">
-                            Jugador
+                          <Jugador/>
                         </div>
                     </vs-tab>
                 </div>
@@ -45,12 +45,13 @@
     import Entrenador from "../Formularios/Creacion/Entrenador";
     import FormularioEstadio from "../Formularios/Creacion/FormularioEstadio";
     import Equipos from "../Formularios/Creacion/Equipos";
+    import Jugador from "../Formularios/Creacion/Jugador";
     export default {
         name: "PestanaCreacion",
         data:()=>({
             colorx:'success'
         }),
-        components:{Ciudad, Entrenador, FormularioEstadio, Equipos}
+        components:{Ciudad, Entrenador, FormularioEstadio, Equipos, Jugador}
     }
 </script>
 
