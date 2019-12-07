@@ -1,7 +1,6 @@
 <template>
     <div>
-        <Nav/>
-        <NavBar/>
+        <h6>Este es un inici</h6>
     </div>
 
 </template>

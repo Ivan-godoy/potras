@@ -10,13 +10,14 @@ import Vuex from 'vuex';
 
 
 Vue.config.productionTip = false;
-Vue.use(Vuesax)
+Vue.use(Vuesax);
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
         count: 1,
         navActivo: false,
+        tokeen: true,
     },
     mutations: {
         increment (state) {
@@ -31,6 +32,8 @@ const store = new Vuex.Store({
 new Vue({
     router,
     store,
-    render: h => h(App)
+    render: h => h(App),
+
 }).$mount('#app');
+
 

@@ -1,7 +1,6 @@
 import Vue from'vue'
 import VueRouter from 'vue-router'
 import App from "../App";
-import Home from "../view/Home";
 import Creacion from "../view/Creacion";
 import Gestiones from "../view/Gestiones";
 import Temporada from "../view/Temporada";
