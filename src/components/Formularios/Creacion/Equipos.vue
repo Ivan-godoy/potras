@@ -11,7 +11,7 @@
                         <vs-input class="inputx" label-placeholder="Nombre del Equipo" v-model="NombreEquipo"/>
                         <vs-input class="inputx"  label-placeholder="Esquema Habitual" v-model="Esquema"/>
                         <vs-select autocomplete class="selectExample" label="Ciudades" v-model="SelectCiudad">
-                            <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="(item,index) in options1" />
+                            <vs-select-item  :value="item.id" :text="item.nombre" v-for="(item) in info" />
                         </vs-select>
                         <vs-input type="date" class="inputx" label-placeholder="Fecha de Fundacion" v-model="FechaFundacion"/>
                     </div>
@@ -38,16 +38,14 @@
             </vs-list>
             <!--                aca terminan los errores-->
         </vs-col>
-        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="4">
-            <vs-card actionable class="cardx">
-                <TablaEquipos/>
-            </vs-card>
-        </vs-col>
+        {{info}}
+
     </vs-row>
 </template>
 
 <script>
     import TablaEquipos from "../../Tablas/TablaEquipos";
+    import Axios from "axios";
     export default {
         name: "FormularioEstadio",
         components:{TablaEquipos},
@@ -56,8 +54,8 @@
                 this.$vs.notify({color:'success',title:'Upload Success',text:'Lorem ipsum dolor sit amet, consectetur'})
             },
             checkForm: function () {
-                if (this.NombreEquipo && this.Esquema && this.SelectCiudad.value != 0 && this.FechaFundacion){
-                    alert("Se valido el form")
+                if (this.NombreEquipo && this.Esquema && this.SelectCiudad > 0 && this.FechaFundacion){
+                    alert("Se valido el form:"+this.SelectCiudad)
                 }
                 this.errors = [];
                 if (!this.NombreEquipo){
@@ -67,7 +65,7 @@
                 if (!this.Esquema){
                     this.errors.push("El campo esquema habitual es requerido.")
                 }
-                if(this.SelectCiudad.value != 0){
+                if(this.SelectCiudad.value > 0){
                     this.errors.push("El campo ciudad se requerido.")
                 }
                 if (!this.FechaFundacion){
@@ -84,12 +82,20 @@
                 SelectCiudad: '',
                 FechaFundacion: '',
                 options1:[
-                    {text:'La Ceiba',value:0},
+                    {text:'La Ceiba',value:1},
                     {text:'Olanchito',value:2},
                     {text:'San Pedro Sula',value:3},
                 ],
-                errors: []
+                errors: [],
+                info:null
             }
+        },
+        mounted() {
+            Axios.get("http://134.209.172.114/ciudades/").then(
+                res => (
+                    this.info = res.data
+                )
+            )
         }
     }
 </script>
