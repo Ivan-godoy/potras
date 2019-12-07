@@ -16,7 +16,7 @@
                         </div>
                         <div slot="footer">
                             <vs-row vs-justify="flex-end">
-                                <vs-button @click="checkForm" color="success" type="filled" icon="done">Guardar Equipo</vs-button>
+                                <vs-button @click="checkForm" color="success" type="filled" icon="done">Guardar Ciudad</vs-button>
                             </vs-row>
                         </div>
 
@@ -36,12 +36,14 @@
 
             </vs-col>
         </vs-row>
+        {{info}}
     </div>
 
 </template>
 
 <script>
     import TablaCiudades from "../../Tablas/TablaCiudades";
+    import Axios from "axios"
     export default {
         name: "Ciudad",
         components:{TablaCiudades},
@@ -49,6 +51,7 @@
             return{
                 errors: [],
                 NombreCiudad: null,
+                info: null,
             }
         },
         methods:{
@@ -58,14 +61,18 @@
             }
             this.errors = [];
             if (!this.NombreCiudad){
-                this.errors.push("El campo nombre no debe estasssssr vacio")
+                this.errors.push("El campo nombre no debe estar vacio")
             }
             if (this.NombreCiudad.length < 3){
                 this.errors.push("El campo nombre debe ser mayor a dos caracteres")
             }
         },
             EnvioDatos: function () {
-                this.openConfirm()
+                Axios.post('http://134.209.172.114/ciudades/',{
+                    nombre: this.NombreCiudad
+                }).then(
+                    this.openConfirm()
+                )
             },
             openConfirm(){
                 this.$vs.dialog({
@@ -82,7 +89,8 @@
                     text:'Se guardo la ciudad '+this.NombreCiudad+"."
                 })
             },
-        }
+        },
+
     }
 </script>
 

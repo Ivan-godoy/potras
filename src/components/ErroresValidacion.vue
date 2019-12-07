@@ -8,7 +8,10 @@
 
 <script>
     export default {
-        name: "ErroresValidacion"
+        name: "ErroresValidacion",
+        props:{
+            errors: Array
+        }
     }
 </script>
 

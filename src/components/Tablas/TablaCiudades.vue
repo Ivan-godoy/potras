@@ -2,7 +2,7 @@
     <div>
         <vs-table
                 @selected="handleSelected"
-                :data="users">
+                :data="ciudades">
             <template slot="header">
                 <h3>
                     Ciudades Existentes
@@ -21,18 +21,16 @@
             </template>
 
             <template slot-scope="{data}">
-                <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
-                    <vs-td :data="data[indextr].id">
-                        {{data[indextr].id}}
+                <vs-tr :data="tr" v-for="(tr, item) in ciudades" >
+                    <vs-td :data="data[item].id">
+                        {{data[item].id}}
                     </vs-td>
 
-                    <vs-td :data="data[indextr].name">
-                        {{data[indextr].name}}
+                    <vs-td :data="data[item].nombre">
+                        {{data[item].nombre}}
                     </vs-td>
 
-                    <vs-td :data="data[indextr].website">
-                        {{data[indextr].website}}
-                    </vs-td>
+
 
                 </vs-tr>
             </template>
@@ -41,43 +39,28 @@
 </template>
 
 <script>
+    import Axios from "axios";
+
     export default {
         name:'TablaCiudades',
-        data:()=>({
-            users:[
-                {
-                    "id": 1,
-                    "name": "La Ceiba",
-                    "username": "Bret",
-                },
-                {
-                    "id": 2,
-                    "name": "Tegucigalpa",
-                    "username": "Teg",
-                },
-                {
-                    "id": 3,
-                    "name": "Juticalpa",
-                    "username": "Samantha",
-                },
-                {
-                    "id": 4,
-                    "name": "Olanchito",
-                    "username": "Karianne",
-                },
-                {
-                    "id": 5,
-                    "name": "San Pedro Sula",
-                    "username": "Kamren",
-                },
-            ]
-        }),
+        data:()=>{
+            return{
+                ciudades:null,
+            }
+        },
         methods:{
             handleSelected(tr) {
                 this.$vs.notify({
-                    title:`Haz seleccionado la ciudad ${tr.name}`,
+                    title:`Haz seleccionado la ciudad ${tr.nombre}`,
                 })
             },
+        },
+        mounted() {
+            Axios.get("http://134.209.172.114/ciudades/").then(
+                res => (
+                    this.ciudades = res.data
+                )
+            )
         }
     }
 </script>

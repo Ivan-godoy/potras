@@ -2,6 +2,13 @@
     <div>
         <vs-tabs :color="colorx">
                 <div>
+                    <div>
+                        <vs-tab @click="colorx = 'warning'" label="Estadio/Ciudad">
+                            <div class="con-tab-ejemplo">
+                                <FormularioEstadio/>
+                            </div>
+                        </vs-tab>
+                    </div>
                     <vs-tab @click="colorx = 'success'" label="Equipo">
                         <div class="con-tab-ejemplo">
                             <Equipos/>
@@ -12,20 +19,6 @@
                     <vs-tab @click="colorx = 'danger'" label="Entrenador">
                         <div class="con-tab-ejemplo">
                             <Entrenador/>
-                        </div>
-                    </vs-tab>
-                </div>
-                <div>
-                    <vs-tab @click="colorx = 'warning'" label="Ciudad">
-                        <div class="con-tab-ejemplo">
-                            <Ciudad/>
-                        </div>
-                    </vs-tab >
-                </div>
-                <div>
-                    <vs-tab @click="colorx = 'dark'" label="Estadio">
-                        <div class="con-tab-ejemplo">
-                            <FormularioEstadio/>
                         </div>
                     </vs-tab>
                 </div>
