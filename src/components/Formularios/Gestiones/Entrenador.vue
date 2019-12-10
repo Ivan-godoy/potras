@@ -65,11 +65,15 @@
                                                         <vs-card actionable class="cardx" >
                                                             <div slot="header">
                                                                 <h3>
-                                                                    Creacion de Entrenador
+                                                                    Edición de Entrenador
                                                                 </h3>
                                                             </div>
                                                             <div>
                                                                 <div class="centerx default-input">
+                                                                    <h5>Entrenador</h5>
+                                                                    <vs-select autocomplete class="selectExample1" v-model="SelectNombre">
+                                                                        <vs-select-item :key="index1" :value="item1.value1" :text="item1.text1" v-for="(item1,index1) in options11" />
+                                                                    </vs-select>
                                                                     <div class="contenedor">
                                                                         <vs-input class="inputx" label-placeholder="Nombre del Entrenador" v-model="NombreEntrenador"/>
                                                                         <vs-input class="inputx" label-placeholder="Nacionalidad del Entrenador" v-model="NacionalidadEntrenador"/>
@@ -106,6 +110,13 @@
                                             <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
                                             <vs-popup class="gesion_Entrenador"  title="Eliminar Entrenador" :active.sync="popupActivo1">
                                                 <p>Hola Guapo, ¿vas a eliminarme?</p>
+                                                <h5>Entrenador</h5>
+                                                <vs-row>
+                                                <vs-select autocomplete class="selectExample1" v-model="SelectNombre">
+                                                    <vs-select-item :key="index1" :value="item1.value1" :text="item1.text1" v-for="(item1,index1) in options11" />
+                                                </vs-select>
+                                                <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                                </vs-row>
                                             </vs-popup>
                                         </vs-col>
                                     </div>

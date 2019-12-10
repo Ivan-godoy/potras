@@ -105,6 +105,13 @@
                                         <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
                                         <vs-popup class="gesion_Equipos"  title="Eliminar Equipo" :active.sync="popupActivo1">
                                             <p>Hola Guapo, ¿vas a eliminarme?</p>
+                                            <h5>Equipo</h5>
+                                            <vs-row>
+                                            <vs-select autocomplete class="selectExample1" v-model="SelectNombre">
+                                                <vs-select-item :key="index1" :value="item1.value1" :text="item1.text1" v-for="(item1,index1) in options11" />
+                                            </vs-select>
+                                            <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                            </vs-row>
                                         </vs-popup>
                                     </vs-col>
                                 </div>

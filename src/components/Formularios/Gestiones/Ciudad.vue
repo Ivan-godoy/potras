@@ -5,7 +5,7 @@
                 <vs-table :data="users">
                     <template slot="header">
                         <h3>
-                            Ciudadesdd
+                            Ciudades
                         </h3>
                     </template>
                     <template slot="thead">
@@ -61,6 +61,13 @@
                                             <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
                                             <vs-popup class="gesion_Equipos"  title="Eliminar Ciudad" :active.sync="popupActivo1">
                                                 <p>Hola Guapo, ¿vas a eliminarme?</p>
+                                                <h5>Ciudad</h5>
+                                                <vs-row >
+                                                <vs-select autocomplete class="selectExample1" v-model="SelectCiudad">
+                                                    <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="(item,index) in options" />
+                                                </vs-select>
+                                                    <vs-button vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                                </vs-row>
                                             </vs-popup>
                                         </vs-col>
                                     </div>
