@@ -2,33 +2,10 @@
 
     <vs-row vs-justify="center">
         <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="6">
-            <vs-card actionable class="cardx" >
-                <div slot="header">
-                    <h3>
-                        Creacion de estadio
-                    </h3>
-                </div>
-                <div>
-                    <div class="contenedor centerx default-input">
-                        <vs-input class="inputx" label-placeholder="Nombre del Estadio" v-model="NombreEstadio"/>
-                        <vs-input class="inputx" label-placeholder="Capacidad Maxima del Estadio" v-model="CapacidadMaxima"/>
-                        <vs-select
-                                autocomplete
-                                class="selectExample"
-                                label="Ciudades"
-                                v-model="SelectCiudad"
-                        >
-                            <vs-select-item :value="item.id" :text="item.nombre" v-for="(item) in ciudades" />
-                        </vs-select>
-                    </div>
-                </div>
-                <div slot="footer">
-                    <vs-row vs-justify="flex-end">
-                        <vs-button @click="checkFormEstadio" color="success" type="filled" icon="done">Guardar Estadio</vs-button>
-                    </vs-row>
-                </div>
-            </vs-card>
-            <ErroresValidacion v-if="DecisionError === 'Estadio'" :errors="errors"/>
+
+        <FormEquipo titulo="Creacion de Equipo"/>
+
+
         </vs-col>
         <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="3">
             <vs-card actionable class="cardx">
@@ -58,10 +35,12 @@
 <script>
     import Axios from "axios";
     import ErroresValidacion from "../../ErroresValidacion";
+    import FormEquipo from "./FormEquipo";
     export default {
         name: "FormularioEstadio",
         components:{
-          ErroresValidacion
+          ErroresValidacion,
+            FormEquipo
         },
         data(){
             return {

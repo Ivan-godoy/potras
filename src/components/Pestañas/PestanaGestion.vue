@@ -11,7 +11,7 @@
         <div>
             <vs-tab @click="colorx = 'success'" label="Entrenador">
                 <div class="con-tab-ejemplo">
-                    <Entrenador/>
+<!--                    <Entrenador/>-->
                 </div>
             </vs-tab>
         </div>
@@ -25,14 +25,14 @@
         <div>
             <vs-tab @click="colorx = 'success'" label="Estadio">
                 <div class="con-tab-ejemplo">
-                    <Estadio/>
+<!--                    <Estadio/>-->
                 </div>
             </vs-tab>
         </div>
         <div>
             <vs-tab @click="colorx = 'success'" label="Jugador">
                 <div class="con-tab-ejemplo">
-                    <BotonesAccion/>
+<!--                    <BotonesAccion/>-->
                 </div>
             </vs-tab>
         </div>
