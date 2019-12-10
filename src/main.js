@@ -9,6 +9,7 @@ import 'material-icons/iconfont/material-icons.css';
 import Vuex from 'vuex';
 
 
+
 Vue.config.productionTip = false;
 Vue.use(Vuesax);
 Vue.use(Vuex);

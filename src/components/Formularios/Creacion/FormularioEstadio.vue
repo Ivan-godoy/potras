@@ -2,17 +2,17 @@
 
     <vs-row vs-justify="center">
         <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="6">
-        <FormEquipo titulo="Creacion de Equipo"/>
-
+<!--            Aca esta el formulario de creacion de equipo-->
+            <FormEquipo titulo="Creacion de Equipo"/>
         </vs-col>
         <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="3">
-            <FormCiudad/>
+<!--            Aca esta el formulario de creacion de ciudad-->
+            <FormCiudad titulo="Creacion de ciudad"/>
         </vs-col>
     </vs-row>
 </template>
 
 <script>
-    import Axios from "axios";
     import FormEquipo from "./FormEstadio";
     import FormCiudad from "./FormCiudad";
     export default {
@@ -20,93 +20,6 @@
         components:{
             FormEquipo,
             FormCiudad
-        },
-        data(){
-            return {
-                NombreEstadio:'',
-                CapacidadMaxima: '',
-                SelectCiudad: '',
-                ciudades: null,
-                errors: [],
-                NombreCiudad: null,
-                DecisionError: null,
-            }
-        },
-        methods:{
-            checkFormEstadio: function(){
-                let expresion = new RegExp(/^[a-zA-z\s]+/);
-                let expresionNumerica = new RegExp(/^[0-9]+$/);
-                this.errors = [];
-                this.DecisionError = "Estadio";
-                if (!this.NombreEstadio || this.NombreEstadio.length < 3){
-                    this.errors.push("El campo Nombre Estadio debe tener al menos 3 letras.")
-                }
-                if (this.NombreEstadio.length > 0 && !expresion.test(this.NombreEstadio)){
-                    this.errors.push("El campo Nombre Estadio solo debe tener caracterer alfabetico.")
-                }
-                if (!this.CapacidadMaxima){
-                    this.errors.push("El campo Capacidad Maxima es requerido.")
-                }
-                if (this.CapacidadMaxima.length > 0 && !expresionNumerica.test(this.CapacidadMaxima)){
-                    this.errors.push("El campo Capacidad Maxima no debe contener letras.")
-                }
-                if (!this.SelectCiudad){
-                    this.errors.push("Tiene que seleccionar una ciudad.")
-                }
-
-                if (this.errors.length === 0){
-                    this.PostEstadio()
-                }
-
-            },
-            PostEstadio: function(){
-                Axios.post('http://134.209.172.114/estadios/', {
-                    nombre: this.NombreEstadio,
-                    capacidad: this.CapacidadMaxima,
-                    ciudad: this.SelectCiudad
-                }).then(
-                    this.openConfirm("el estadio "+this.NombreEstadio)
-                )
-            },
-            checkForm: function () {
-                if (this.NombreCiudad && this.NombreCiudad.length > 2){
-                    this.EnvioDatos()
-                }
-                this.errors = [];
-                this.DecisionError = "Ciudad";
-                if (!this.NombreCiudad){
-                    this.errors.push("El campo Nombre de Ciudad es requerido")
-                }else{
-                    if (this.NombreCiudad.length < 3){
-                        this.errors.push("El campo nombre debe ser mayor a dos caracteres")
-                    }
-                }
-            },
-            EnvioDatos: function () {
-                Axios.post('http://134.209.172.114/ciudades/',{
-                    nombre: this.NombreCiudad
-                }).then(
-                    this.openConfirm("la Ciudad "+this.NombreCiudad),
-                    this.CargarCiudades()
-                )
-            },
-            openConfirm(fragmento){
-                this.$vs.dialog({
-                    color: 'success',
-                    title: `Guardado`,
-                    text: 'Se ha guardado exitosamente '+fragmento+".",
-                })
-            },
-            CargarCiudades(){
-                Axios.get("http://134.209.172.114/ciudades/").then(
-                    res => (
-                        this.ciudades = res.data
-                    )
-                )
-            }
-        },
-        mounted() {
-            this.CargarCiudades()
         },
     }
 </script>
