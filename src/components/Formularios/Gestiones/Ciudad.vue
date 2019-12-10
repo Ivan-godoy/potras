@@ -23,18 +23,47 @@
                             </vs-td>
                             <vs-td>
                                 <vs-row vs-w="12">
-<!--                                    <div>-->
-<!--                                        <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">-->
-<!--                                            <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>-->
-<!--                                            <vs-popup class="gestion_Ciudad"  title="Editar Ciudad" :active.sync="popupActivo">-->
-<!--                                                <p>Hola Guapo</p>-->
-<!--                                            </vs-popup>-->
-<!--                                            <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>-->
-<!--                                            <vs-popup class="gestion_Ciudad"  title="Eliminar Ciudad" :active.sync="popupActivo1">-->
-<!--                                                <p>Hola Guapo, ¿vas a eliminarme?</p>-->
-<!--                                            </vs-popup>-->
-<!--                                        </vs-col>-->
-<!--                                    </div>-->
+                                    <div>
+                                        <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
+                                            <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
+                                            <vs-popup class="gestion_Ciudad"  title="Editar Ciudad" :active.sync="popupActivo">
+                                                <div>
+                                                    <vs-row vs-justify="center">
+                                                        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="10">
+                                                            <vs-card actionable class="cardx">
+                                                                <div slot="header">
+                                                                    <h3>
+                                                                        Edición de ciudades
+                                                                    </h3>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="centerx">
+                                                                        <h5>Ciudad</h5>
+                                                                        <vs-select autocomplete class="selectExample1" v-model="SelectCiudad">
+                                                                            <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="(item,index) in options" />
+                                                                        </vs-select>
+                                                                    </div>
+                                                                    <div class="centerx">
+                                                                        <vs-input  label-placeholder="Nombre de la Ciudad editado" v-model="NombreCiudad" type="text" id="NombreCiudad"/>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div slot="footer">
+                                                                    <vs-row vs-justify="flex-end">
+                                                                        <vs-button @click="checkForm" color="success" type="filled" icon="done">Guardar Ciudad</vs-button>
+                                                                    </vs-row>
+                                                                </div>
+                                                            </vs-card>
+                                                        </vs-col>
+                                                    </vs-row>
+                                                </div>
+                                            </vs-popup>
+                                            <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                            <vs-popup class="gesion_Equipos"  title="Eliminar Ciudad" :active.sync="popupActivo1">
+                                                <p>Hola Guapo, ¿vas a eliminarme?</p>
+                                            </vs-popup>
+                                        </vs-col>
+                                    </div>
                                 </vs-row>
                             </vs-td>
                         </vs-tr>

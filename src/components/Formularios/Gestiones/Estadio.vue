@@ -42,7 +42,36 @@
                                         <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
                                             <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
                                             <vs-popup class="gestion_Estadio"  title="Editar Estadio" :active.sync="popupActivo">
-                                                <p>Hola Guapo</p>
+                                                <vs-row vs-justify="center">
+                                                    <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="6">
+
+                                                        <FormEquipo titulo="Creacion de Equipo"/>
+
+
+                                                    </vs-col>
+                                                    <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="3">
+                                                        <vs-card actionable class="cardx">
+                                                            <div slot="header">
+                                                                <h3>
+                                                                    Edición de ciudades
+                                                                </h3>
+                                                            </div>
+                                                            <div>
+                                                                <div class="centerx">
+                                                                    <vs-input   label-placeholder="Nombre de la Ciudad" v-model="NombreCiudad" type="text" id="NombreCiudad"/>
+                                                                </div>
+
+                                                            </div>
+                                                            <div slot="footer">
+                                                                <vs-row vs-justify="flex-end">
+                                                                    <vs-button @click="checkForm" color="success" type="filled" icon="done">Guardar Ciudad</vs-button>
+                                                                </vs-row>
+                                                            </div>
+
+                                                        </vs-card>
+                                                        <ErroresValidacion v-if="DecisionError === 'Ciudad'" :errors="errors"/>
+                                                    </vs-col>
+                                                </vs-row>
                                             </vs-popup>
                                             <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
                                             <vs-popup class="gesion_Estadio"  title="Eliminar Estadio" :active.sync="popupActivo1">

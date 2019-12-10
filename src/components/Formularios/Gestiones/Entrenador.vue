@@ -60,7 +60,48 @@
                                         <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
                                             <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
                                             <vs-popup class="gestion_Entrenador"  title="Editar Entrenador" :active.sync="popupActivo">
-                                                <p>Hola Guapo</p>
+                                                <vs-row vs-justify="center">
+                                                    <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="15">
+                                                        <vs-card actionable class="cardx" >
+                                                            <div slot="header">
+                                                                <h3>
+                                                                    Creacion de Entrenador
+                                                                </h3>
+                                                            </div>
+                                                            <div>
+                                                                <div class="centerx default-input">
+                                                                    <div class="contenedor">
+                                                                        <vs-input class="inputx" label-placeholder="Nombre del Entrenador" v-model="NombreEntrenador"/>
+                                                                        <vs-input class="inputx" label-placeholder="Nacionalidad del Entrenador" v-model="NacionalidadEntrenador"/>
+                                                                        <vs-input class="inputx" label-placeholder="Lugar de Nacimiento" v-model="LugarNacimiento"/>
+                                                                    </div>
+                                                                    <div class="contenedor">
+                                                                        <vs-input type="date" class="inputx" label-placeholder="Fecha de Nacimiento" v-model="FechaNacimiento"/>
+                                                                        <vs-select
+                                                                                autocomplete
+                                                                                class="selectExample"
+                                                                                label="Selección de Equipos"
+                                                                                v-model="SelectEquipos"
+                                                                        >
+                                                                            <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="(item,index) in options1" />
+                                                                        </vs-select>
+                                                                    </div>
+                                                                    <div class="contenedor">
+                                                                        <div class="centerx">
+                                                                            <h6 class="text-center">Editar Foto</h6>
+                                                                            <vs-upload action="https://jsonplaceholder.typicode.com/posts/" @on-success="successUpload" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div slot="footer">
+                                                                <vs-row vs-justify="flex-end">
+                                                                    <vs-button color="success" type="filled" icon="done">Guardar Entrenador</vs-button>
+                                                                </vs-row>
+                                                            </div>
+                                                        </vs-card>
+                                                    </vs-col>
+                                                </vs-row>
                                             </vs-popup>
                                             <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
                                             <vs-popup class="gesion_Entrenador"  title="Eliminar Entrenador" :active.sync="popupActivo1">
