@@ -5,7 +5,7 @@
                 <vs-table :data="users">
                     <template slot="header">
                         <h3>
-                            Ciudades
+                            Ciudadesdd
                         </h3>
                     </template>
                     <template slot="thead">
