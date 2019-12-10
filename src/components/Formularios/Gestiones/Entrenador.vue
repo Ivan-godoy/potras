@@ -28,10 +28,7 @@
                             Equipo que Entrena
                         </vs-th>
                         <vs-th>
-                            Modificar
-                        </vs-th>
-                        <vs-th>
-                            Eliminar
+                            Acciones
                         </vs-th>
                     </template>
 
@@ -52,21 +49,26 @@
                             <vs-td :data="data[indextr].fecha_nacimiento">
                                 {{data[indextr].fecha_nacimiento}}
                             </vs-td>
-                            <vs-td :data="data[indextr].foto_entrenador">
-                                {{data[indextr].foto_entrenador}}
-                            </vs-td>
+                            <vs-avatar :badge="tr.id" size="50px"
+                                       :src="`https://img.pixers.pics/pho_wat(s3:700/FO/80/15/73/22/700_FO80157322_1fbc30669b67c1f9ef5c4a38cc2aceca.jpg,498,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,278,650,jpg)/vinilos-entrenador-de-futbol-con-la-bola.jpg.jpg`"/>
                             <vs-td :data="data[indextr].equipo">
                                 {{data[indextr].equipo}}
                             </vs-td>
                             <vs-td>
-                                <div>
-                                    <vs-button vs-type="gradient" size="medium" color="success" icon="create"></vs-button>
-                                </div>
-                            </vs-td>
-                            <vs-td>
-                                <div>
-                                    <vs-button vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
-                                </div>
+                                <vs-row vs-w="12">
+                                    <div>
+                                        <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
+                                            <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
+                                            <vs-popup class="gestion_Entrenador"  title="Editar Entrenador" :active.sync="popupActivo">
+                                                <p>Hola Guapo</p>
+                                            </vs-popup>
+                                            <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
+                                            <vs-popup class="gesion_Entrenador"  title="Eliminar Entrenador" :active.sync="popupActivo1">
+                                                <p>Hola Guapo, ¿vas a eliminarme?</p>
+                                            </vs-popup>
+                                        </vs-col>
+                                    </div>
+                                </vs-row>
                             </vs-td>
                         </vs-tr>
                     </template>
@@ -79,34 +81,38 @@
 <script>
     export default {
         name: "Entrenador",
-        data:()=>({
-            users:[
-                {
-                    "nombre": "Edgardo Argueta",
-                    "nacionalidad": "Hondureña",
-                    "lugar_nacimiento": "San Juan Pueblo",
-                    "fecha_nacimiento": "15 de Septiembre 1999",
-                    "foto_entrenador": "Argueta.jpg",
-                    "equipo": "Barcelona",
-                },
-                {
-                    "nombre": "Edgardo Argueta",
-                    "nacionalidad": "Hondureña",
-                    "lugar_nacimiento": "San Juan Pueblo",
-                    "fecha_nacimiento": "15 de Septiembre 1999",
-                    "foto_entrenador": "Argueta.jpg",
-                    "equipo": "Barcelona",
-                },
-                {
-                    "nombre": "Edgardo Argueta",
-                    "nacionalidad": "Hondureña",
-                    "lugar_nacimiento": "San Juan Pueblo",
-                    "fecha_nacimiento": "15 de Septiembre 1999",
-                    "foto_entrenador": "Argueta.jpg",
-                    "equipo": "Barcelona",
-                },
-            ]
-        })
+        data(){
+            return{
+                users:[
+                    {
+                        "nombre": "Edgardo Argueta",
+                        "nacionalidad": "Hondureña",
+                        "lugar_nacimiento": "San Juan Pueblo",
+                        "fecha_nacimiento": "15 de Septiembre 1999",
+                        "foto_entrenador": "Argueta.jpg",
+                        "equipo": "Barcelona",
+                    },
+                    {
+                        "nombre": "Edgardo Argueta",
+                        "nacionalidad": "Hondureña",
+                        "lugar_nacimiento": "San Juan Pueblo",
+                        "fecha_nacimiento": "15 de Septiembre 1999",
+                        "foto_entrenador": "Argueta.jpg",
+                        "equipo": "Barcelona",
+                    },
+                    {
+                        "nombre": "Edgardo Argueta",
+                        "nacionalidad": "Hondureña",
+                        "lugar_nacimiento": "San Juan Pueblo",
+                        "fecha_nacimiento": "15 de Septiembre 1999",
+                        "foto_entrenador": "Argueta.jpg",
+                        "equipo": "Barcelona",
+                    },
+                ],
+                popupActivo:false,
+                popupActivo1:false
+            }
+        }
     }
 </script>
 
