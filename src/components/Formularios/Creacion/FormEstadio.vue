@@ -25,15 +25,12 @@
             </vs-row>
         </div>
     </vs-card>
-<!--    <ErroresValidacion v-if="DecisionError === 'Estadio'" :errors="errors"/>-->
 </template>
 
 <script>
-    import ErroresValidacion from "../../ErroresValidacion";
     import Axios from "axios";
     export default {
-        name: "FormEquipo",
-        components:{ErroresValidacion},
+        name: "FormEstadio",
         props:{
             titulo: null,
         },
@@ -44,8 +41,6 @@
                 SelectCiudad: '',
                 ciudades: null,
                 errors: [],
-                NombreCiudad: null,
-                DecisionError: null,
             }
         },
         methods:{

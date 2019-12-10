@@ -2,45 +2,24 @@
 
     <vs-row vs-justify="center">
         <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="6">
-
         <FormEquipo titulo="Creacion de Equipo"/>
-
 
         </vs-col>
         <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="3">
-            <vs-card actionable class="cardx">
-                <div slot="header">
-                    <h3>
-                        Creacion de ciudades
-                    </h3>
-                </div>
-                <div>
-                    <div class="centerx">
-                        <vs-input   label-placeholder="Nombre de la Ciudad" v-model="NombreCiudad" type="text" id="NombreCiudad"/>
-                    </div>
-
-                </div>
-                <div slot="footer">
-                    <vs-row vs-justify="flex-end">
-                        <vs-button @click="checkForm" color="success" type="filled" icon="done">Guardar Ciudad</vs-button>
-                    </vs-row>
-                </div>
-
-            </vs-card>
-            <ErroresValidacion v-if="DecisionError === 'Ciudad'" :errors="errors"/>
+            <FormCiudad/>
         </vs-col>
     </vs-row>
 </template>
 
 <script>
     import Axios from "axios";
-    import ErroresValidacion from "../../ErroresValidacion";
-    import FormEquipo from "./FormEquipo";
+    import FormEquipo from "./FormEstadio";
+    import FormCiudad from "./FormCiudad";
     export default {
         name: "FormularioEstadio",
         components:{
-          ErroresValidacion,
-            FormEquipo
+            FormEquipo,
+            FormCiudad
         },
         data(){
             return {
