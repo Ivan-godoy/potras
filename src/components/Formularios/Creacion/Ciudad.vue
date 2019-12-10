@@ -10,7 +10,7 @@
                     </div>
                         <div>
                             <div class="centerx">
-                                <vs-input label-placeholder="Nombre de la Ciudad" v-model="NombreCiudad" type="text" id="NombreCiudad"/>
+                                <vs-input  label-placeholder="Nombre de la Ciudad" v-model="NombreCiudad" type="text" id="NombreCiudad"/>
                             </div>
 
                         </div>

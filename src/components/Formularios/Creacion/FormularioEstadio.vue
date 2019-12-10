@@ -39,7 +39,7 @@
                 </div>
                 <div>
                     <div class="centerx">
-                        <vs-input label-placeholder="Nombre de la Ciudad" v-model="NombreCiudad" type="text" id="NombreCiudad"/>
+                        <vs-input   label-placeholder="Nombre de la Ciudad" v-model="NombreCiudad" type="text" id="NombreCiudad"/>
                     </div>
 
                 </div>
@@ -71,7 +71,7 @@
                 ciudades: null,
                 errors: [],
                 NombreCiudad: null,
-                DecisionError: null
+                DecisionError: null,
             }
         },
         methods:{
@@ -118,16 +118,18 @@
                 this.DecisionError = "Ciudad";
                 if (!this.NombreCiudad){
                     this.errors.push("El campo Nombre de Ciudad es requerido")
-                }
-                if (this.NombreCiudad.length < 3){
-                    this.errors.push("El campo nombre debe ser mayor a dos caracteres")
+                }else{
+                    if (this.NombreCiudad.length < 3){
+                        this.errors.push("El campo nombre debe ser mayor a dos caracteres")
+                    }
                 }
             },
             EnvioDatos: function () {
                 Axios.post('http://134.209.172.114/ciudades/',{
                     nombre: this.NombreCiudad
                 }).then(
-                    this.openConfirm("la Ciudad "+this.NombreCiudad)
+                    this.openConfirm("la Ciudad "+this.NombreCiudad),
+                    this.CargarCiudades()
                 )
             },
             openConfirm(fragmento){
@@ -136,7 +138,6 @@
                     title: `Guardado`,
                     text: 'Se ha guardado exitosamente '+fragmento+".",
                 })
-                this.CargarCiudades()
             },
             CargarCiudades(){
                 Axios.get("http://134.209.172.114/ciudades/").then(
