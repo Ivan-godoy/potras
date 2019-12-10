@@ -5,21 +5,24 @@
                 <vs-table :data="users">
                     <template slot="header">
                         <h3>
-                            Ciudadesdd
+                            Ciudades
                         </h3>
                     </template>
                     <template slot="thead">
                         <vs-th>
-                            Nombre del Estadio
+                            Nombre de la Ciudad
                         </vs-th>
                         <vs-th>
                             Acciones
                         </vs-th>
+<!--                      <vs-tr v-for="item in ciudades">-->
+<!--                        <vs-td v-text="item.NombreCiudad"></vs-td>-->
+<!--                        </vs-tr>-->
                     </template>
                     <template slot-scope="{data}">
                         <vs-tr :key="indextr" v-for="(tr, indextr) in data" >
-                            <vs-td :data="data[indextr].nombre">
-                                {{data[indextr].nombre}}
+                            <vs-td :data="data[indextr].res">
+                                {{data[indextr].res}}
                             </vs-td>
                             <vs-td>
                                 <vs-row vs-w="12">
@@ -71,6 +74,7 @@
                 </vs-table>
             </div>
         </vs-col>
+      {{ciudades}}
     </vs-row>
 </template>
 
@@ -80,6 +84,7 @@
         name: "Ciudad",
         data(){
             return{
+                ciudades: null,
                 users:[
                     // {
                     //     "nombre": "La Ceiba",
@@ -95,12 +100,14 @@
                 popupActivo1:false,
             }
         },
-        CargarCiudades(){
-            Axios.get("http://134.209.172.114/ciudades/").then(
-                res => (
-                    this.ciudades = res.data
+        methods: {
+            CargarCiudades(){
+                Axios.get("http://134.209.172.114/ciudades/").then(
+                    res => (
+                        this.ciudades = res.data
+                    )
                 )
-            )
+            }
         },
     mounted() {
         this.CargarCiudades();
