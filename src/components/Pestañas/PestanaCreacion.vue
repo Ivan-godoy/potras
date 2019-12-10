@@ -29,6 +29,13 @@
                         </div>
                     </vs-tab>
                 </div>
+                <div>
+                    <vs-tab @click="colorx = 'warning'" label="Arbitro">
+                        <div class="con-tab-ejemplo">
+                            <Arbitro/>
+                        </div>
+                    </vs-tab>
+                </div>
         </vs-tabs>
     </div>
 </template>
@@ -39,12 +46,13 @@
     import FormularioEstadio from "../Formularios/Creacion/FormularioEstadio";
     import Equipos from "../Formularios/Creacion/Equipos";
     import Jugador from "../Formularios/Creacion/Jugador";
+    import Arbitro from "../Formularios/Creacion/Arbitro";
     export default {
         name: "PestanaCreacion",
         data:()=>({
             colorx:'success'
         }),
-        components:{Ciudad, Entrenador, FormularioEstadio, Equipos, Jugador}
+        components:{Ciudad, Entrenador, FormularioEstadio, Equipos, Jugador, Arbitro}
     }
 </script>
 
