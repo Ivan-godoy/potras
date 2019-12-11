@@ -46,52 +46,28 @@
     import Axios from "axios"
     export default {
         name: "Ciudad",
-        components:{TablaCiudades},
-        data:()=> {
-            return{
+        components: {TablaCiudades},
+        data: () => {
+            return {
                 errors: [],
                 NombreCiudad: null,
                 info: null,
             }
         },
-        methods:{
+        methods: {
             checkForm: function () {
-            if (this.NombreCiudad && this.NombreCiudad.length > 2){
-                this.EnvioDatos()
+                if (this.NombreCiudad && this.NombreCiudad.length > 2) {
+                    this.EnvioDatos()
+                }
+                this.errors = [];
+                if (!this.NombreCiudad) {
+                    this.errors.push("El campo nombre no debe estar vacio")
+                    if (this.NombreCiudad.length < 3) {
+                        this.errors.push("El campo nombre debe ser mayor a dos caracteres")
+                    }
+                }
             }
-            this.errors = [];
-            if (!this.NombreCiudad){
-                this.errors.push("El campo nombre no debe estar vacio")        mounted() {
-            this.CargarEstadios();
-            }
-            if (this.NombreCiudad.length < 3){
-                this.errors.push("El campo nombre debe ser mayor a dos caracteres")
-            }
-        },
-            EnvioDatos: function () {
-                Axios.post('http://134.209.172.114/ciudades/',{
-                    nombre: this.NombreCiudad
-                }).then(
-                    this.openConfirm()
-                )
-            },
-            openConfirm(){
-                this.$vs.dialog({
-                    color: 'success',
-                    title: `Guardado`,
-                    text: 'Se ha guardado exitosamente la ciudad '+this.NombreCiudad+".",
-                    accept:this.acceptAlert
-                })
-            },
-            acceptAlert(color){
-                this.$vs.notify({
-                    color:'success',
-                    title:'Guardado',
-                    text:'Se guardo la ciudad '+this.NombreCiudad+"."
-                })
-            },
-        },
-
+        }
     }
 </script>
 
