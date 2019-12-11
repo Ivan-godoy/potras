@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'vuesax/dist/vuesax.css'
 import 'material-icons/iconfont/material-icons.css';
 import Vuex from 'vuex';
+import Axios from "axios";
 
 
 
@@ -14,16 +15,13 @@ Vue.config.productionTip = false;
 Vue.use(Vuesax);
 Vue.use(Vuex);
 
+
 const store = new Vuex.Store({
     state: {
-        count: 1,
         navActivo: false,
         tokeen: true,
     },
     mutations: {
-        increment (state) {
-            state.count++
-        },
         switchNav(state){
             state.navActivo =! state.navActivo
         }
