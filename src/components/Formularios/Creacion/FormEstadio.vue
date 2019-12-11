@@ -26,23 +26,29 @@
                 </vs-row>
             </div>
         </vs-card>
+        <ErroresValidacion :errors="errors"/>
     </div>
 </template>
 
 <script>
     import Axios from "axios";
+    import ErroresValidacion from "../../ErroresValidacion";
     export default {
         name: "FormEstadio",
         props:{
-            titulo: null,
+            titulo: String,
+            ciudades: Array
+        },
+        components:{
+            ErroresValidacion
         },
         data(){
             return{
                 NombreEstadio:'',
                 CapacidadMaxima: '',
                 SelectCiudad: '',
-                ciudades: null,
                 errors: [],
+                comments: []
             }
         },
         methods:{
@@ -68,15 +74,9 @@
 
                 if (this.errors.length === 0){
                     this.PostEstadio()
+                    this.errors = []
                 }
 
-            },
-            CargarCiudades(){
-                Axios.get("http://134.209.172.114/ciudades/").then(
-                    res => (
-                        this.ciudades = res.data
-                    )
-                )
             },
             PostEstadio: function(){
                 Axios.post('http://134.209.172.114/estadios/', {
@@ -84,13 +84,11 @@
                     capacidad: this.CapacidadMaxima,
                     ciudad: this.SelectCiudad
                 }).then(
-                    this.openConfirm("el estadio "+this.NombreEstadio)
+                    this.openConfirm("el estadio "+this.NombreEstadio),
                 )
             },
         },
-        mounted() {
-            this.CargarCiudades();
-        }
+
     }
 </script>
 

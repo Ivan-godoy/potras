@@ -28,17 +28,18 @@
     import ErroresValidacion from "../../ErroresValidacion";
     export default {
         name: "FormCiudad",
+        data(){
+            return{
+                NombreCiudad:null,
+                errors: [],
+                saludo: "hola"
+            }
+        },
         components:{
             ErroresValidacion
         },
         props:{
             titulo: null
-        },
-        data(){
-            return{
-                NombreCiudad:null,
-                errors: null
-            }
         },
         methods:{
             checkForm: function () {
@@ -59,7 +60,7 @@
                     nombre: this.NombreCiudad
                 }).then(
                     this.openConfirm("la Ciudad "+this.NombreCiudad),
-                    this.NombreCiudad = "",
+                    this.$emit("ActivarCiudades")
                 )
             },
             openConfirm(fragmento){
@@ -69,7 +70,9 @@
                     text: 'Se ha guardado exitosamente '+fragmento+".",
                 })
             },
-        }
+        },
+
+
     }
 </script>
 
