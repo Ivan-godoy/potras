@@ -81,20 +81,30 @@
         data(){
             return{
                 users:[
-                    {
-                        "nombre": "La Ceiba",
-                    },
-                    {
-                        "nombre": "Tegucigalpa",
-                    },
-                    {
-                        "nombre": "San Pedro Sula",
-                    },
+                    // {
+                    //     "nombre": "La Ceiba",
+                    // },
+                    // {
+                    //     "nombre": "Tegucigalpa",
+                    // },
+                    // {
+                    //     "nombre": "San Pedro Sula",
+                    // },
                 ],
                 popupActivo:false,
                 popupActivo1:false,
             }
         },
+        CargarCiudades(){
+            Axios.get("http://134.209.172.114/ciudades/").then(
+                res => (
+                    this.ciudades = res.data
+                )
+            )
+        },
+    mounted() {
+        this.CargarCiudades();
+    }
     }
 </script>
 

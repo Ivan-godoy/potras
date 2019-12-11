@@ -35,10 +35,15 @@
         </div>
         <div slot="footer">
           <vs-row vs-justify="flex-end">
-            <vs-button color="success" type="filled" icon="done">Guardar Entrenador</vs-button>
+            <vs-button @click="checkForm" color="success" type="filled" icon="done">Guardar Entrenador</vs-button>
           </vs-row>
         </div>
       </vs-card>
+      <vs-list v-if="errors.length">
+        <vs-list-header title="Errores" color="danger"></vs-list-header>
+        <vs-list-item icon="clear" color="danger" v-for="error in errors" :title="error">
+        </vs-list-item>
+      </vs-list>
     </vs-col>
     <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="4">
       <vs-card actionable class="cardx">
@@ -51,26 +56,60 @@
 <script>
     import TablaEntrenador from "../../Tablas/TablaEntrenador";
     export default {
-        methods:{
-            successUpload(){
-                this.$vs.notify({color:'success',title:'Upload Success',text:'Lorem ipsum dolor sit amet, consectetur'})
-            }
-        },
         name: "Entrenador",
         components:{TablaEntrenador},
         data(){
             return {
+                errors: [],
                 NombreEntrenador:'',
                 NacionalidadEntrenador: '',
                 LugarNacimiento: '',
                 FechaNacimiento: '',
                 SelectEquipos: '',
                 options1:[
-                    {text:'La Ceiba',value:0},
+                    {text:'La Ceiba',value:1},
                     {text:'Olanchito',value:2},
                     {text:'San Pedro Sula',value:3},
                 ],
             }
+        },
+        methods:{
+            successUpload(){
+                this.$vs.notify({color:'success',title:'Upload Success',text:'Lorem ipsum dolor sit amet, consectetur'})
+            },
+            checkForm: function () {
+                if (this.NacionalidadEntrenador && this.NombreEntrenador
+                    && this.FechaNacimiento && this.LugarNacimiento && this.SelectEquipos){
+                    this.EnvioDatos()
+                }
+                this.errors = [];
+                if (!this.NacionalidadEntrenador){
+                    this.errors.push("El campo nacionalidad entrenador no debe estar vacio")
+                }
+                if (!this.NombreEntrenador){
+                    this.errors.push("El campo nombre entrenador no debe estar vacio")
+                }
+                if (!this.FechaNacimiento){
+                    this.errors.push("El campo Fecha de Nacimiento no debe estar vacio")
+                }
+                if (!this.LugarNacimiento){
+                    this.errors.push("El campo Lugar de Nacimiento no debe estar vacio")
+                }
+                if (!this.SelectEquipos){
+                    this.errors.push("El campo Seleccionar Equipos no debe estar vacio")
+                }
+            },
+            EnvioDatos: function () {
+                this.openConfirm()
+            },
+            openConfirm(){
+                this.$vs.dialog({
+                    color: 'success',
+                    title: `Guardado`,
+                    text: 'Los Datos se han guardado exitosamente',
+                    accept:this.acceptAlert
+                })
+            },
         }
     }
 </script>
