@@ -61,7 +61,8 @@
             }
             this.errors = [];
             if (!this.NombreCiudad){
-                this.errors.push("El campo nombre no debe estar vacio")
+                this.errors.push("El campo nombre no debe estar vacio")        mounted() {
+            this.CargarEstadios();
             }
             if (this.NombreCiudad.length < 3){
                 this.errors.push("El campo nombre debe ser mayor a dos caracteres")

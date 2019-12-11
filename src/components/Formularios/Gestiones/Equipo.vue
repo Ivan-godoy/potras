@@ -115,46 +115,59 @@
             </vs-table>
         </div>
         </vs-col>
+      {{equipos}}
     </vs-row>
 </template>
 
 <script>
-
+  import Axios from "axios"
     export default {
         name: "Equipo",
         data(){
             return{
+                equipos: null,
                 users:[
-                    {
-                        "nombre": "Barcelona",
-                        "fecha_fundacion": "2 de abril 1997",
-                        "esquema_habitual": "Primera",
-                        "logo_equipo": "Logo.jpg",
-                        "estadio": "Ceibeño",
-                        "jugadores": "24",
-                    },
-                    {
-                        "nombre": "Barcelona",
-                        "fecha_fundacion": "2 de abril 1997",
-                        "esquema_habitual": "Primera",
-                        "logo_equipo": "Logo.jpg",
-                        "estadio": "Ceibeño",
-                        "jugadores": "24",
-                    },
-                    {
-                        "nombre": "Barcelona",
-                        "fecha_fundacion": "2 de abril 1997",
-                        "esquema_habitual": "Primera",
-                        "logo_equipo": "Logo.jpg",
-                        "estadio": "Ceibeño",
-                        "jugadores": "24",
-                    },
+                //     {
+                //         "nombre": "Barcelona",
+                //         "fecha_fundacion": "2 de abril 1997",
+                //         "esquema_habitual": "Primera",
+                //         "logo_equipo": "Logo.jpg",
+                //         "estadio": "Ceibeño",
+                //         "jugadores": "24",
+                //     },
+                //     {
+                //         "nombre": "Barcelona",
+                //         "fecha_fundacion": "2 de abril 1997",
+                //         "esquema_habitual": "Primera",
+                //         "logo_equipo": "Logo.jpg",
+                //         "estadio": "Ceibeño",
+                //         "jugadores": "24",
+                //     },
+                //     {
+                //         "nombre": "Barcelona",
+                //         "fecha_fundacion": "2 de abril 1997",
+                //         "esquema_habitual": "Primera",
+                //         "logo_equipo": "Logo.jpg",
+                //         "estadio": "Ceibeño",
+                //         "jugadores": "24",
+                //     },
                 ],
                 popupActivo:false,
                 popupActivo1:false
             }
         },
-
+        methods: {
+            CargarEquipos(){
+                Axios.get("http://134.209.172.114/equipos/").then(
+                    res => (
+                        this.ciudades = res.data
+                    )
+                )
+            }
+        },
+        mounted() {
+            this.CargarEquipos();
+        }
     }
 </script>
 

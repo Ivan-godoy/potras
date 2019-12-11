@@ -100,8 +100,15 @@
                 }
             },
             EnvioDatos: function () {
-                this.openConfirm()
-            },
+                Axios.post('http://134.209.172.114/entrenadores/',{
+                    nombre: this.NombreEntrenador,
+                    nacionalidad: this.NacionalidadEntrenador,
+                    lugarNacimiento: this.LugarNacimiento,
+                    fechaNacimiento: this.FechaNacimiento,
+                    SelectEquipos: this.SelectEquipos
+                }).then(
+                    this.openConfirm()
+                )            },
             openConfirm(){
                 this.$vs.dialog({
                     color: 'success',

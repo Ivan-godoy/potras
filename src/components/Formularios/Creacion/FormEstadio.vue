@@ -71,26 +71,32 @@
                 }
 
             },
-            CargarCiudades(){
-                Axios.get("http://134.209.172.114/ciudades/").then(
-                    res => (
-                        this.ciudades = res.data
-                    )
-                )
-            },
-            PostEstadio: function(){
-                Axios.post('http://134.209.172.114/estadios/', {
+            EnvioDatos: function () {
+                Axios.post('http://134.209.172.114/estadios/',{
                     nombre: this.NombreEstadio,
                     capacidad: this.CapacidadMaxima,
-                    ciudad: this.SelectCiudad
+                    ciudad: this.Ciudad
                 }).then(
-                    this.openConfirm("el estadio "+this.NombreEstadio)
+                    this.openConfirm()
                 )
             },
+            // CargarEstadios(){
+            //     Axios.get("http://134.209.172.114/estadios/").then(
+            //         res => (
+            //             this.estadios = res.data
+            //         )
+            //     )
+            // },
+            // PostEstadio: function(){
+            //     Axios.post('http://134.209.172.114/estadios/', {
+            //         nombre: this.NombreEstadio,
+            //         capacidad: this.CapacidadMaxima,
+            //         ciudad: this.SelectCiudad
+            //     }).then(
+            //         this.openConfirm("el estadio "+this.NombreEstadio)
+            //     )
+            // },
         },
-        mounted() {
-            this.CargarCiudades();
-        }
     }
 </script>
 
