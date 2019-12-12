@@ -1,141 +1,80 @@
-<template>
+<template lang="html">
+  <div>
+    <vs-table
+      @selected="handleSelected"
+      :data="ciudades">
+      <template slot="header">
+        <h3>
+          Equipos Existentes
+        </h3>
+      </template>
+      <template slot="thead">
+        <vs-th>
+          Nombre del Equipo
+        </vs-th>
+        <vs-th>
+          Ciudad de Localidad
+        </vs-th>
+        <vs-th>
+          Nombre del Estadio
+        </vs-th>
+        <vs-th>
+          Logo
+        </vs-th>
+      </template>
 
+      <template slot-scope="{data}">
+        <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in ciudades" >
+          <vs-td :data="data[indextr].nombre">
+            {{data[indextr].nombre}}
+          </vs-td>
+          <vs-td :data="data[indextr].nombre">
+            {{data[indextr].nombre}}
+          </vs-td>
+          <vs-td :data="data[indextr].nombre">
+            {{data[indextr].nombre}}
+          </vs-td>
+          <vs-td :data="data[indextr].nombre">
+            {{data[indextr].id}}
+          </vs-td>
+        </vs-tr>
+      </template>
+    </vs-table>
 
+    <vs-popup fullscreen :title="'Creando jugadores del equipo '+titulo" :active.sync="popupActivo4">
+      <popup :id="id_tr"/>
+    </vs-popup>
 
-<!--      <vs-list v-if="errors.length">-->
-<!--        <vs-list-header title="Errores" color="danger"></vs-list-header>-->
-<!--        <vs-list-item icon="clear" color="danger" v-for="error in errors" :title="error">-->
-<!--        </vs-list-item>-->
-<!--      </vs-list>-->
-
+  </div>
 </template>
 
 <script>
-  import Axios from "axios"
+  import axios from 'axios'
+  import Popup from "../../Popup";
     export default {
-
         name: "Jugador",
-        props:{
-            titulo: null,
-        },
+        components:{Popup},
         data(){
-            return {
-                errors: [],
-                NombreJugador:'',
-                NumeroJugador:'',
-                LugarNacimiento: '',
-                NacionalidadJugador: '',
-                FechaNacimiento: '',
-                PesoJugador: '',
-                EstaturaJugador: '',
-                SelectPosicion: '',
-                options1:[
-                    {text:'Portero',value:1},
-                    {text:'Defensa',value:2},
-                    {text:'Lateral Derecho',value:3},
-                    {text:'Lateral Izquierdo',value:4},
-                    {text:'Delantero',value:5},
-                ],
+            return{
+                ciudades: null,
+                popupActivo4:false,
+                titulo: null,
+                id_tr: null
             }
         },
         methods:{
-            checkForm: function () {
-                let LetrasExpresion = new RegExp(/^[A-Za-z\s]+$/);
-                let NumerosExpresion = new RegExp(/^[0-9]+$/);
-                this.errors = [];
-                if (this.NombreJugador.length < 3 || !this.NombreJugador){
-                    this.errors.push("El campo Nombre del Jugador debe tener al menos 3 caracteres")
-                }
-                if (!LetrasExpresion.test(this.NombreJugador)){
-                    this.errors.push("El campo Nombre del Jugador solo acepta caracteres alfabeticos")
-                }
-                if (!this.NumeroJugador){
-                    this.errors.push("El campo Numero del Jugador no debe estar vacio")
-                }
-                if (!NumerosExpresion.test(this.NumeroJugador)){
-                    this.errors.push("El Campo Numero del Jugador soló acepta Numeros")
-                }
-                if (this.LugarNacimiento.length < 3 || !this.LugarNacimiento){
-                    this.errors.push("El campo Lugar de Nacimiento debe tener al menos 3 caracteres")
-                }
-                if (this.NacionalidadJugador.length < 3 || !this.NacionalidadJugador){
-                    this.errors.push("El campo de Nacionalidad del Jugador no debe tener al menos 3 caracteres")
-                }
-                if (!LetrasExpresion.test(this.NacionalidadJugador)){
-                    this.errors.push("El campo de Nacionalidad del Jugador solo acepta caracteres alfabeticos")
-                }
-                if (!this.FechaNacimiento){
-                    this.errors.push("El campo Fecha de Nacimiento del jugador no debe estar vacio")
-                }
-                if (!this.PesoJugador){
-                    this.errors.push("El campo Peso del Jugador no debe estar vacio")
-                }
-                if (!this.EstaturaJugador){
-                    this.errors.push("El campo estatura del jugador no debe estar vacio")
-                }
-                if (!this.SelectPosicion){
-                    this.errors.push("El campo Seleccionar Jugador no debe estar vacio")
-                }
-                if (this.errors.length === 0 ){
-                    this.PostJugador();
-                }
+            handleSelected(tr) {
+                this.titulo = tr.nombre
+                this.popupActivo4 = true
+                this.id_tr = tr.id
             },
-            EnvioDatos: function () {
-                Axios.post('http://134.209.172.114/jugadores/',{
-                    nombre: this.NombreJugador,
-                    fecha_nacimeinto: this.FechaNacimiento,
-                    nacionalidad: this.NacionalidadJugador,
-                    lugar_nacimeinto: this.LugarNacimiento,
-                    peso: this.PesoJugador,
-                    estatura: this.EstaturaJugador,
-                    imagen: this.Imagen,
-                    posicion: this.SelectPosicion
-                }).then(
-                    this.openConfirm()
-                )
-            },
-            CargarJugador(){
-                Axios.get("http://134.209.172.114/jugadores/").then(
-                    res => (
-                        this.estadios = res.data
-                    )
-                )
-            },
-            PostJugador: function(){
-                Axios.post('http://134.209.172.114/jugadores/', {
-                    nombre: this.NombreJugador,
-                    fecha_nacimeinto: this.FechaNacimiento,
-                    nacionalidad: this.NacionalidadJugador,
-                    lugar_nacimeinto: this.LugarNacimiento,
-                    peso: this.PesoJugador,
-                    estatura: this.EstaturaJugador,
-                    imagen: this.Imagen,
-                    posicion: this.SelectPosicion
-                }).then(
-                    this.openConfirm("el judador "+this.NombreJugador)
-                )
-            },
-            // openConfirm(){
-            //     this.$vs.dialog({
-            //         color: 'success',
-            //         title: `Guardado`,
-            //         text: 'Los Datos se han guardado exitosamente',
-            //         accept:this.acceptAlert
-            //     })
-            // }
+        },
+        mounted() {
+            axios.get('http://134.209.172.114/equipos/').then(
+                res =>(
+                    this.ciudades = res.data
+            )
+            )
         }
     }
 </script>
-<style scoped lang="stylus">
-  .cardx
-    margin 15px
-  .default-input
-    .inputx
-      margin 5px
-      margin-top 30px
-  .contenedor
-    display flex
-    flex-direction row
-  .tarjetas
-    padding 30px
-</style>
