@@ -79,13 +79,20 @@
 
             },
             PostEstadio: function(){
-                Axios.post('http://134.209.172.114/estadios/', {
+                Axios.post('http://134.209.172.114/api/estadios/', {
                     nombre: this.NombreEstadio,
                     capacidad: this.CapacidadMaxima,
                     ciudad: this.SelectCiudad
                 }).then(
                     this.openConfirm("el estadio "+this.NombreEstadio),
                 )
+            },
+            openConfirm(fragmento){
+                this.$vs.dialog({
+                    color: 'success',
+                    title: `Guardado`,
+                    text: 'Se ha guardado exitosamente '+fragmento+".",
+                })
             },
         },
 

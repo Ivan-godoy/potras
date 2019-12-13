@@ -7,7 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'vuesax/dist/vuesax.css'
 import 'material-icons/iconfont/material-icons.css';
 import Vuex from 'vuex';
-import Axios from "axios";
+const $ = require('jquery')
+window.$ = $
 
 
 

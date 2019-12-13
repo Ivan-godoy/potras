@@ -78,7 +78,7 @@
                 data.append('fecha_fundacion', this.FechaFundacion);
                 data.append('esquema_habitual', this.Esquema);
                 data.append('estadio', this.SelectEstadio);
-                Axios.post('http://134.209.172.114/equipos/',data,{
+                Axios.post('http://134.209.172.114/api/equipos/',data,{
                     headers:{
                         'Content-Type': 'multipart/form-data'
                     }
@@ -106,7 +106,7 @@
             }
         },
         mounted() {
-            Axios.get("http://134.209.172.114/estadios/").then(
+            Axios.get("http://134.209.172.114/api/estadios/").then(
                 res => (
                     this.estadios = res.data
                 )

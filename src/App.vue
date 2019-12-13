@@ -35,4 +35,7 @@
 <style lang="stylus">
     #Sidenav
         background antiquewhite
+    *::-webkit-scrollbar
+        width 0
+
 </style>

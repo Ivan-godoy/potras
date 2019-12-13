@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="row">
+    <div class="contenedor">
 
-      <div class="col">
+      <div id="formJugador">
         <FormJugador titulo="Formulario Jugador" :id_equipo="id"/>
       </div>
 
-      <div class="col-sm-5">
-        <FormJugador titulo="Formulario Jugador"/>
+      <div>
+        <FormJugador id="tablaJugador" titulo="Formulario Jugador"/>
       </div>
     </div>
   </div>
@@ -24,6 +24,12 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="stylus">
+.contenedor
+  display flex
+  flex-direction row
+  justify-content center
+#formJugador
+  width 40%
+  margin-right 100px
 </style>

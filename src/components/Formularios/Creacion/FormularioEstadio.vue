@@ -32,7 +32,7 @@
         methods:{
             p(){alert("hola")},
             CargarCiudades: function(){
-                Axios.get("http://134.209.172.114/ciudades/").then(
+                Axios.get("http://134.209.172.114/api/ciudades/").then(
                     res => (
                         this.ciudades = res.data
                     )

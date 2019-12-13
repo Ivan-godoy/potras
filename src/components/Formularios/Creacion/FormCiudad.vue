@@ -56,7 +56,7 @@
                 }
             },
             EnvioDatos: function () {
-                Axios.post('http://134.209.172.114/ciudades/',{
+                Axios.post('http://134.209.172.114/api/ciudades/',{
                     nombre: this.NombreCiudad
                 }).then(
                     this.openConfirm("la Ciudad "+this.NombreCiudad),
