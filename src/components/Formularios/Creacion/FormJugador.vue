@@ -63,11 +63,13 @@
           <vs-button @click="checkForm" color="success" type="filled" icon="done">Guardar Jugador</vs-button>
         </vs-row>
       </div>
-    </vs-card>
+      </vs-card>
   </div>
 </template>
 
 <script>
+  import Axios from "axios"
+  import ErroresValidacion from "../../ErroresValidacion";
     export default {
         name: "FormJugador",
         props:{
@@ -93,6 +95,9 @@
                     {text:'Delantero',value:5},
                 ],
             }
+        },
+        components:{
+            ErroresValidacion
         },
         methods: {
             checkForm: function () {
@@ -153,7 +158,7 @@
             CargarJugador() {
                 Axios.get("http://134.209.172.114/api/jugadores/").then(
                     res => (
-                        this.estadios = res.data
+                        this.jugadores = res.data
                     )
                 )
             },

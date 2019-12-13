@@ -7,7 +7,7 @@
       </div>
 
       <div>
-        <FormJugador id="tablaJugador" titulo="Formulario Jugador"/>
+        <TablaJugador id="tablaJugador" titulo="Formulario Jugador"/>
       </div>
     </div>
   </div>
@@ -15,9 +15,10 @@
 
 <script>
   import FormJugador from "./Formularios/Creacion/FormJugador";
+  import TablaJugador from "./Tablas/TablaJugador";
     export default {
         name: "Popup",
-        components:{FormJugador},
+        components:{TablaJugador, FormJugador},
         props:{
             id: Number,
         }
