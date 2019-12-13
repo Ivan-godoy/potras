@@ -73,7 +73,7 @@
         components:{FormEstadio},
         data(){
             return{
-                estadio: null,
+                estadios: null,
                 nombre: null,
                 capacidad: null,
                 ciudad: null,
