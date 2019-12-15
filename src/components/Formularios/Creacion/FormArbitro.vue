@@ -11,20 +11,20 @@
                 <div class="col">
                     <div class="row">
                         <vs-input class="inputx col-10" label-placeholder="Nombre Completo del Arbitro" v-model="NombreArbitro" @keyup="validacionNom"/>
-                        <vs-alert v-for="error in errorsNom" :active="inputValid" color="danger" icon="new_releases" >
+                        <vs-alert v-for="error in errorsNom" color="danger" icon="new_releases" >
                             <span>{{ error }}</span>
                         </vs-alert>
                     </div>
                     <div class="row">
                         <vs-input class="inputx col-10" label-placeholder="Nacionalidad del Arbitro" v-model="NacionalidadArbitro" @keyup="validacionNa"/>
-                        <vs-alert v-for="error in errorsNa" :active="inputValid" color="danger" icon="new_releases" >
+                        <vs-alert v-for="error in errorsNa" color="danger" icon="new_releases" >
                             <span>{{ error }}</span>
                         </vs-alert>
                     </div>
                     <div class="row">
                         <vs-input  class="inputx col-10" type="date" v-model="FechaNacimiento" @change="validacionFe"/>
                         <span style="margin-left: 20px">Fecha de Nacimiento</span>
-                        <vs-alert v-for="error in errorsFe" :active="inputValid" color="danger" icon="new_releases" >
+                        <vs-alert v-for="error in errorsFe" color="danger" icon="new_releases" >
                             <span>{{ error }}</span>
                         </vs-alert>
                     </div>
@@ -34,7 +34,7 @@
                 <div class="col">
                     <div class="row">
                         <vs-input class="inputx col-10" label-placeholder="Lugar de Nacimiento" v-model="LugarNacimiento" @keyup="validacionLu"/>
-                        <vs-alert v-for="error in errorsLug" :active="inputValid" color="danger" icon="new_releases" >
+                        <vs-alert v-for="error in errorsLug" color="danger" icon="new_releases" >
                             <span>{{ error }}</span>
                         </vs-alert>
                     </div>
@@ -49,7 +49,7 @@
                         >
                             <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="(item,index) in Posicion" />
                         </vs-select>
-                        <vs-alert v-for="error in errorsPo" :active="inputValid" color="danger" icon="new_releases" >
+                        <vs-alert v-for="error in errorsPo" color="danger" icon="new_releases" >
                             <span>{{ error }}</span>
                         </vs-alert>
                     </div>
@@ -63,8 +63,9 @@
                             :limit="1"
                             :text="'Foto del Arbitro'"
                             @change="NombreFile"
+                            v-model="Foto"
                     />
-                   <vs-alert v-for="error in errorsFo" :active="inputValid" color="danger" icon="new_releases" >
+                   <vs-alert v-for="error in errorsFo" color="danger" icon="new_releases" >
                         <span>{{ error }}</span>
                     </vs-alert>
                 </div>
@@ -96,6 +97,7 @@
                 NacionalidadArbitro: '',
                 FechaNacimiento: '',
                 SelectPosicion: '',
+                Foto:'',
                 Posicion:[
                     {text:'Arbitro Principal',value:1},
                     {text:'Arbitro Asistente 1',value:2},
