@@ -47,7 +47,7 @@
         </div>
       </vs-card>
       <vs-list v-if="errors.length">
-        <vs-list-header title="Errores" color="danger"></vs-list-header>
+        <vs-list-header title="¡Ups!" color="danger"></vs-list-header>
         <vs-list-item icon="clear" color="danger" v-for="error in errors" :title="error">
         </vs-list-item>
       </vs-list>
@@ -80,19 +80,19 @@
             }
             this.errors = [];
             if (!this.NombreEntrenador){
-              this.errors.push("El campo nombre equipo es requerido.")
+              this.errors.push("El campo Nombre Equipo es requerido.")
             }
             if (!this.NacionalidadEntrenador){
-              this.errors.push("El campo de la nacionalidad es requerido.")
+              this.errors.push("El campo de la Nacionalidad es requerido.")
             }
             if (!this.LugarNacimiento){
-              this.errors.push("El campo de lugar de nacimiento es requerido.")
+              this.errors.push("El campo de Lugar de Nacimiento es requerido.")
             }
             if (!this.FechaNacimiento){
-              this.errors.push("El campo fecha fundacion es requerido.")
+              this.errors.push("El campo Fecha de Nacimiento es requerido.")
             }
             if(this.SelectEquipos.value > 0){
-              this.errors.push("El campo ciudad se requerido.")
+              this.errors.push("El campo Equipo se requerido.")
             }
           },
           GuardarEntrenador: function () {
