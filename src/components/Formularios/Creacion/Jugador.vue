@@ -44,7 +44,7 @@
     </vs-table>
 
     <vs-popup fullscreen :title="'Creando jugadores del equipo '+titulo" :active.sync="popupActivo4">
-      <popup :id="id_tr"/>
+      <popup :id="id_tr" :Logo="logo"/>
     </vs-popup>
 
   </div>
@@ -64,6 +64,7 @@
                 titulo: null,
                 id_tr: null,
                 buscar: null,
+                logo: '',
             }
         },
         methods:{
@@ -71,6 +72,7 @@
                 this.titulo = tr.nombre
                 this.popupActivo4 = true
                 this.id_tr = tr.id
+                this.logo = tr.logo_equipo
             },
         },
         mounted() {

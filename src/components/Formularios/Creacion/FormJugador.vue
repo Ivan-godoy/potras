@@ -42,7 +42,7 @@
                 label="Selección de Posición"
                 v-model="SelectPosicion"
               >
-                <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="(item,index) in options1" />
+                <vs-select-item :value="item.id" :text="item.descripcion" v-for="(item) in posiciones" />
             </vs-select>
           </div>
         </div>
@@ -54,8 +54,18 @@
                   :show-upload-button="false"
                   :limit="1"
                   :text="'Foto del Jugador '"
-
+                  @change="NombreFile"
           />
+        </div>
+        <div class="col">
+          <div v-if="errors.length > 0">
+            <vs-divider color="danger"></vs-divider>
+            <vs-alert title="Errores" active="true" color="danger">
+              <ul id="errores">
+                <li v-for="item in errors" >{{item}}</li>
+              </ul>
+            </vs-alert>
+          </div>
         </div>
       </div>
       <div slot="footer">
@@ -68,33 +78,34 @@
 </template>
 
 <script>
+  import Axios from 'axios'
+  var fs = require('fs')
     export default {
         name: "FormJugador",
         props:{
             titulo: null,
-            id_equipo: null
+            id_equipo: null,
         },
         data(){
             return {
                 errors: [],
-                NombreJugador:'',
-                NumeroJugador:'',
-                LugarNacimiento: '',
-                NacionalidadJugador: '',
-                FechaNacimiento: '',
-                PesoJugador: '',
-                EstaturaJugador: '',
-                SelectPosicion: '',
-                options1:[
-                    {text:'Portero',value:1},
-                    {text:'Defensa',value:2},
-                    {text:'Lateral Derecho',value:3},
-                    {text:'Lateral Izquierdo',value:4},
-                    {text:'Delantero',value:5},
-                ],
+              NombreJugador: 'Williams Santos',
+              NacionalidadJugador: 'Hondure',
+              FechaNacimiento: '',
+              EstaturaJugador: 1.80,
+              NumeroJugador:'18',
+              LugarNacimiento: 'Trujillo',
+              PesoJugador: '189',
+              SelectPosicion: 2,
+              posiciones: '',
+              file: '',
+              jugadores: ''
             }
         },
         methods: {
+            NombreFile: function(){
+              this.file = document.getElementById("file").files[0];
+            },
             checkForm: function () {
                 let LetrasExpresion = new RegExp(/^[A-Za-z\s]+$/);
                 let NumerosExpresion = new RegExp(/^[0-9]+$/);
@@ -146,30 +157,60 @@
                     estatura: this.EstaturaJugador,
                     imagen: this.Imagen,
                     posicion: this.SelectPosicion
+                },{
+                  headers:{
+                    'Content-Type': 'multipart/form-data'
+                  }
                 }).then(
-                    this.openConfirm()
-                )
-            },
-            CargarJugador() {
-                Axios.get("http://134.209.172.114/api/jugadores/").then(
-                    res => (
-                        this.estadios = res.data
-                    )
-                )
-            },
-            PostJugador: function () {
-                Axios.post('http://134.209.172.114/api/jugadores/', {
-                    nombre: this.NombreJugador,
-                    fecha_nacimeinto: this.FechaNacimiento,
-                    nacionalidad: this.NacionalidadJugador,
-                    lugar_nacimeinto: this.LugarNacimiento,
-                    peso: this.PesoJugador,
-                    estatura: this.EstaturaJugador,
-                    imagen: this.Imagen,
-                    posicion: this.SelectPosicion
-                }).then(
-                    this.openConfirm("el judador " + this.NombreJugador)
-                )
+          this.openConfirm()
+  )
+  },
+  CargarJugador() {
+    Axios.get("http://134.209.172.114/api/jugadores/"+this.id_equipo).then(
+            res => (
+                    this.estadios = res.data
+            )
+    )
+  },
+  PostJugador: function () {
+    //
+    // let data = new FormData()
+    // let fileStream = fs.createReadStream(this.file)
+    //
+    //
+    //
+    // data.append('nombre', this.NombreJugador)
+    // data.append('fecha_nacimiento', this.FechaNacimiento)
+    // data.append('nacionalidad', this.NacionalidadJugador)
+    // data.append('lugar_nacimiento', this.LugarNacimiento)
+    // data.append('peso', this.PesoJugador)
+    // data.append('estatura', this.EstaturaJugador)
+    // data.append('imagen', fileStream)
+    // data.append('posicion', this.SelectPosicion)
+    // let equipo_jugador={
+    //   estado: true,
+    //   dorsal: this.NumeroJugador,
+    //   equipo_id: this.id_equipo
+    //
+    // }
+    //           data.append('equipo_jugador', equipo_jugador)
+              Axios.post('http://134.209.172.114/api/jugadores/', {
+                nombre: this.NombreJugador,
+                fecha_nacimiento: this.FechaNacimiento,
+                nacionalidad:this.NacionalidadJugador,
+                lugar_nacimiento:this.LugarNacimiento,
+                peso: this.PesoJugador,
+                estatura: this.EstaturaJugador,
+                posicion: this.SelectPosicion,
+                equipo_jugador:{
+                  estado: true,
+                  dorsal: this.NumeroJugador,
+                  equipo_id: this.id_equipo
+              }
+              })
+              .then(
+                      this.openConfirm()
+              )
             },
             openConfirm(){
                 this.$vs.dialog({
@@ -179,7 +220,14 @@
                     accept:this.acceptAlert
                 })
             }
-        }
+        },
+      mounted() {
+          Axios.get('http://134.209.172.114/api/posiciones-jugador/').then(
+                  res =>(
+                          this.posiciones = res.data
+                  )
+          )
+      }
     }
 </script>
 
@@ -195,5 +243,6 @@
     flex-direction row
   .tarjetas
     padding 30px
-
+  #errores li
+    margin-left 10px
 </style>
