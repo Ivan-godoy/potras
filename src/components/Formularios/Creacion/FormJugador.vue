@@ -79,7 +79,6 @@
 
 <script>
   import Axios from 'axios'
-
     export default {
         name: "FormJugador",
         props:{
@@ -88,15 +87,15 @@
         },
         data(){
             return {
-                errors: [],
-              NombreJugador: 'Williams Santos',
-              NacionalidadJugador: 'Hondure',
+              errors: [],
+              NombreJugador: '',
+              NacionalidadJugador: '',
               FechaNacimiento: '',
-              EstaturaJugador: 1.80,
-              NumeroJugador:'18',
-              LugarNacimiento: 'Trujillo',
-              PesoJugador: '189',
-              SelectPosicion: 2,
+              EstaturaJugador: '',
+              NumeroJugador:'',
+              LugarNacimiento: '',
+              PesoJugador: '',
+              SelectPosicion: '',
               posiciones: '',
               file: '',
               jugadores: ''
@@ -145,56 +144,21 @@
                 }
                 if (this.errors.length === 0) {
                     this.PostJugador();
+                    this.NombreJugador = '',
+                    this.NacionalidadJugador = '',
+                    this.FechaNacimiento = '',
+                    this.EstaturaJugador = '',
+                    this.NumeroJugador ='',
+                    this.LugarNacimiento = '',
+                    this.PesoJugador = '',
+                    this.SelectPosicion = '',
+                    this.posiciones = '',
+                    this.file = '',
+                    this.jugadores = ''
                 }
             },
-            EnvioDatos: function () {
+            PostJugador: function () {
                 Axios.post('http://134.209.172.114/api/jugadores/', {
-                    nombre: this.NombreJugador,
-                    fecha_nacimeinto: this.FechaNacimiento,
-                    nacionalidad: this.NacionalidadJugador,
-                    lugar_nacimeinto: this.LugarNacimiento,
-                    peso: this.PesoJugador,
-                    estatura: this.EstaturaJugador,
-                    imagen: this.Imagen,
-                    posicion: this.SelectPosicion
-                },{
-                  headers:{
-                    'Content-Type': 'multipart/form-data'
-                  }
-                }).then(
-          this.openConfirm()
-  )
-  },
-  CargarJugador() {
-    Axios.get("http://134.209.172.114/api/jugadores/"+this.id_equipo).then(
-            res => (
-                    this.estadios = res.data
-            )
-    )
-  },
-  PostJugador: function () {
-    //
-    // let data = new FormData()
-    // let fileStream = fs.createReadStream(this.file)
-    //
-    //
-    //
-    // data.append('nombre', this.NombreJugador)
-    // data.append('fecha_nacimiento', this.FechaNacimiento)
-    // data.append('nacionalidad', this.NacionalidadJugador)
-    // data.append('lugar_nacimiento', this.LugarNacimiento)
-    // data.append('peso', this.PesoJugador)
-    // data.append('estatura', this.EstaturaJugador)
-    // data.append('imagen', fileStream)
-    // data.append('posicion', this.SelectPosicion)
-    // let equipo_jugador={
-    //   estado: true,
-    //   dorsal: this.NumeroJugador,
-    //   equipo_id: this.id_equipo
-    //
-    // }
-    //           data.append('equipo_jugador', equipo_jugador)
-              Axios.post('http://134.209.172.114/api/jugadores/', {
                 nombre: this.NombreJugador,
                 fecha_nacimiento: this.FechaNacimiento,
                 nacionalidad:this.NacionalidadJugador,
