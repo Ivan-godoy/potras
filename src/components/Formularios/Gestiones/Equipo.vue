@@ -97,7 +97,7 @@
                 res =>(
                     this.equipos = res.data
                 )
-            )        }
+            )}
     }
 </script>
 

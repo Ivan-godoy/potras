@@ -62,7 +62,7 @@
                             :show-upload-button="false"
                             :limit="1"
                             :text="'Foto del Arbitro'"
-                            @change="NombreFile"
+                            @change="nomFile"
                             v-model="Foto"
                     />
                    <vs-alert v-for="error in errorsFo" color="danger" icon="new_releases" >
@@ -80,12 +80,11 @@
 </template>
 
 <script>
-    import Axios from "axios"
+    import axios from "axios"
     export default {
         name: "FormArbitro",
         data(){
             return {
-
                 errorsNom: [],
                 errorsLug: [],
                 errorsNa: [],
@@ -110,7 +109,7 @@
             }
         },
         methods: {
-            NombreFile: function(){
+            nomFile: function(){
                 this.file = document.getElementById("file").files[0];
             },
             validacionNom: function(){
@@ -170,14 +169,14 @@
                 }
             },
             EnvioDatos: function () {
-                let data = new FormData();
-                data.append('nombre', this.NombreArbitro);
-                data.append('posicion', this.SelectPosicion);
-                data.append('fecha_nacimiento', this.FechaNacimiento);
-                data.append('nacionalidad', this.NacionalidadArbitro);
-                data.append('lugar_nacimiento', this.LugarNacimiento);
-                data.append('imagen', this.file);
-                Axios.post('http://134.209.172.114/api/arbitros/', data,{
+                let datos = new FormData();
+                datos.append('nombre', this.NombreArbitro);
+                datos.append('posicion', this.SelectPosicion);
+                datos.append('fecha_nacimiento', this.FechaNacimiento);
+                datos.append('nacionalidad', this.NacionalidadArbitro);
+                datos.append('lugar_nacimiento', this.LugarNacimiento);
+                datos.append('imagen', this.file);
+                axios.post('http://134.209.172.114/api/arbitros/', datos,{
                     headers:{
                         'Content-Type': 'multipart/form-data'
                     }

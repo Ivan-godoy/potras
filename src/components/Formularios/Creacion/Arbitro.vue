@@ -3,7 +3,6 @@
         <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="7">
             <FormArbitro/>
         </vs-col>
-
     </vs-row>
 </template>
 
@@ -12,7 +11,6 @@
     export default {
         name: "Arbitro",
         components:{FormArbitro},
-
     }
 </script>
 
