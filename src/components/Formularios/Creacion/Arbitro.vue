@@ -1,6 +1,6 @@
 <template lang="html">
     <vs-row vs-justify="center">
-        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="7">
+        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="3">
             <FormArbitro/>
         </vs-col>
     </vs-row>

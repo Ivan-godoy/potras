@@ -10,7 +10,11 @@
             <div class="row contenedor centerx default-input">
                 <div class="col">
                     <div class="row">
-                        <vs-input class="inputx col-10" label-placeholder="Nombre Completo del Arbitro" v-model="NombreArbitro" @keyup="validacionNom"/>
+                        <vs-input
+                                class="inputx col-10"
+                                label-placeholder="Nombre Completo del Arbitro"
+                                v-model="NombreArbitro"
+                                @keyup="validacionNom"/>
                         <vs-alert v-for="error in errorsNom" color="danger" icon="new_releases" >
                             <span>{{ error }}</span>
                         </vs-alert>
