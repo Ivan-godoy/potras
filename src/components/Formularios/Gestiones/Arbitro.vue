@@ -70,7 +70,7 @@
                         v-model="selected"
                         @selected="handleSelected"
                         pagination
-                        max-items="20"
+                        max-items="4"
                         search
                         :data="arbitros">
                     <template slot="header">
@@ -156,7 +156,6 @@
                 this.LugarNacimiento = tr.lugar_nacimiento;
                 this.NacionalidadArbitro = tr.nacionalidad;
                 this.FechaNacimiento = tr.fecha_nacimiento;
-
             },
             validacionNom: function(){
                 this.errorsNom = [];

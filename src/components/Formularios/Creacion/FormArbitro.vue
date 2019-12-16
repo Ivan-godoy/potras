@@ -1,4 +1,4 @@
-<template>
+<template scope>
     <div>
         <vs-card actionable class="cardx">
             <div slot="header">
@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col">
                     <vs-upload
-                            id="file"
+                            id="fileArbitro"
                             :show-upload-button="false"
                             :limit="1"
                             :text="'Foto del Arbitro'"
@@ -112,7 +112,8 @@
         },
         methods: {
             nomFile: function(){
-                this.file = document.getElementById("file").files[0];
+                this.file = document.getElementById("fileArbitro").files[0];
+                console.log(this.file);
             },
             validacionNom: function(){
                 this.errorsNom = [];
