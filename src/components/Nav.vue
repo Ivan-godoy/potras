@@ -14,8 +14,8 @@
             </div>
             <vs-sidebar-item index="1" to="/inicio" >Inicio</vs-sidebar-item>
             <vs-sidebar-item to="/creacion" index="2">Creaciones</vs-sidebar-item>
-            <vs-sidebar-item to="/gestiones" index="2">Gestiones</vs-sidebar-item>
-            <vs-sidebar-item to="/recientes" index="2">Temporada</vs-sidebar-item>
+            <vs-sidebar-item to="/gestiones" index="3">Gestiones</vs-sidebar-item>
+            <vs-sidebar-item to="/recientes" index="4">Temporada</vs-sidebar-item>
 
 
             <div class="footer-sidebar" slot="footer">

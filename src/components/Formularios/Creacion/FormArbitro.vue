@@ -63,7 +63,6 @@
                             :limit="1"
                             :text="'Foto del Arbitro'"
                             @change="nomFile"
-                            v-model="Foto"
                     />
                    <vs-alert v-for="error in errorsFo" color="danger" icon="new_releases" >
                         <span>{{ error }}</span>
@@ -96,7 +95,6 @@
                 NacionalidadArbitro: '',
                 FechaNacimiento: '',
                 SelectPosicion: '',
-                Foto:'',
                 Posicion:[
                     {text:'Arbitro Principal',value:1},
                     {text:'Arbitro Asistente 1',value:2},
@@ -157,7 +155,7 @@
                 }
             },
             checkForm: function () {
-                if (this.errorsNom.length === 0 || this.errorsLug === 0 || this.val) {
+                if (this.errorsNom.length === 0 && this.errorsLug.length === 0 && this.errorsNa.length === 0 && this.errorsFe.length === 0 && this.errorsPo.length === 0 && this.errorsFo.length === 0 ) {
                     this.EnvioDatos();
                 }else{
                     this.validacionNom();

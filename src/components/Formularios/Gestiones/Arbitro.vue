@@ -23,8 +23,8 @@
                             </vs-alert>
                         </div>
                         <div class="row">
-                            <vs-input  class="inputx col-10" type="date" v-model="FechaNacimiento" @change="validacionFe"/>
                             <span style="margin-left: 20px">Fecha de Nacimiento</span>
+                            <vs-input  class="inputx col-10" type="date" v-model="FechaNacimiento" @change="validacionFe"/>
                             <vs-alert v-for="error in errorsFe" color="danger" icon="new_releases" >
                                 <span>{{ error }}</span>
                             </vs-alert>
@@ -197,7 +197,7 @@
                 }
             },
             checkForm: function () {
-                if (this.errorsNom.length === 0 || this.errorsLug === 0) {
+                if (this.errorsNom.length === 0 && this.errorsLug.length === 0 && this.errorsNa.length === 0 && this.errorsFe.length === 0 && this.errorsPo.length === 0 && this.errorsFo.length === 0 ) {
                     this.CambioDatos();
                 }else{
                     this.validacionNom();
