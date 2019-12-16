@@ -5,7 +5,7 @@
                 <div>
                     <vs-tab @click="colorx = 'warning'" label="Temporadas">
                         <div class="con-tab-ejemplo">
-
+                            <Temporada/>
                         </div>
                     </vs-tab>
                 </div>
@@ -41,12 +41,13 @@
 </template>
 
 <script>
+    import Temporada from "../Formularios/Temporada/Temporada";
     export default {
         name: "PestanaTablas",
         data:()=>({
             colorx:'success'
         }),
-        components:{}
+        components:{Temporada}
 
     }
 </script>
