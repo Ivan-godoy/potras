@@ -30,7 +30,7 @@
                 <h6 class="text-center">Subir Foto</h6>
                 <!--subir imagen-->
                 <vs-upload
-                        id="file"
+                        id="fileEntrenador"
                         :show-upload-button="false"
                         :limit="1"
                         :text="'Seleccionar Imagen del Entrenador'"
@@ -70,7 +70,7 @@
             )
           },
           NombreFile: function(){
-            this.file = document.getElementById("file").files[0];
+            this.file = document.getElementById("fileEntrenador").files[0];
             console.log(this.file)
           },
           checkForm: function () {
