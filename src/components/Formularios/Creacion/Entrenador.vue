@@ -15,12 +15,12 @@
               <vs-input class="inputx" label-placeholder="Lugar de Nacimiento" v-model="LugarNacimiento"/>
             </div>
             <div class="contenedor">
-              <vs-input type="date" class="inputx" label-placeholder="Fecha de Nacimiento" v-model="FechaNacimiento"/>
+              <vs-input type="date" class="inputx" label-placeholder="" v-model="FechaNacimiento"/>
               <vs-select
                 autocomplete
                 class="selectExample"
-                label="Selección de Equipos"
                 v-model="SelectEquipos"
+                label="Selección de Equipos"
               >
                 <vs-select-item :value="item.id" :text="item.nombre" v-for="(item) in equipos" />
               </vs-select>
@@ -108,7 +108,15 @@
                         'Content-Type': 'multipart/form-data'
                       }
                     }
-            ).then(this.openConfirm())
+            ).then(
+                this.openConfirm(),
+                this.NombreEntrenador = '',
+                this.NacionalidadEntrenador = '',
+                this.LugarNacimiento = '',
+                this.FechaNacimiento = '',
+                this.SelectEquipos = '',
+
+            )
           },
           openConfirm(){
             this.$vs.dialog({
