@@ -67,11 +67,11 @@
                                 {{data[indextr].fecha_final}}
                             </vs-td>
 
-                            <vs-td>
+                            <vs-td :data="data[indextr].id">
                                 <vs-row>
                                         <vs-col  vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
-                                            <vs-button to="/tablas" title="Ver Encuentros"  id="btnVerTemporada"   vs-type="gradient" size="medium" color="success" icon="add" style="margin-right: 10px"></vs-button>
-                                            <vs-button @click="GenerarEncuentros" title="Crear Encuentros" id="btnCrearEncuentro"  vs-type="flat" size="medium" color="warning" icon="touch_app"></vs-button>
+                                            <vs-button :to="'/tablas/'+data[indextr].id" title="Ver Encuentros"  id="btnVerTemporada"   vs-type="gradient" size="medium" color="success" icon="add" style="margin-right: 10px"></vs-button>
+                                            <vs-button @click="GenerarEncuentros(data[indextr].id)" :data="data[indextr].id" title="Crear Encuentros" id="btnCrearEncuentro"  vs-type="flat" size="medium" color="warning" icon="touch_app"></vs-button>
                                         </vs-col>
                                 </vs-row>
                             </vs-td>
@@ -114,12 +114,17 @@
                     this.errors.push("Es necesario llenar el campo de Fecha de Fin de Temporada.")
                 }
             },
-            GenerarEncuentros: function () {
-                console.log('hola guapo');
+            GenerarEncuentros: function (id) {
+                Axios.get('http://134.209.172.114/api/encuentros/generar/'+id).then(
+                    function (res) {
+                        alert("hols")
+                    }
+                )
             },
         },
         data(){
             return{
+                id_temporada: '',
                 errors:[],
                 temporadas: '',
                 fecha_inicial: null,

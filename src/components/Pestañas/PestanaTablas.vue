@@ -4,7 +4,7 @@
             <div>
                 <vs-tab @click="colorx = 'success'" label="Encuentros">
                     <div class="con-tab-ejemplo">
-
+                        <Encuentros :id_temporada="temporada"/>
                     </div>
                 </vs-tab>
             </div>
@@ -41,11 +41,21 @@
 </template>
 
 <script>
+    import Encuentros from "../TablasTemporada/Encuentros";
     export default {
         name: "PestanaTablas",
+        components: {Encuentros},
+        component:{Encuentros},
         data:()=>({
-            colorx:'success'
+            colorx:'success',
+            temporada: null
         }),
+        mounted() {
+            let url =  window.location.pathname
+            let array = url.split('/')
+            this.temporada = array[2]
+
+        }
 
     }
 </script>

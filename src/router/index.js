@@ -14,7 +14,7 @@ const routes = [
     {path: '/inicio', name: 'inicio', component: App},
     {path: '/creacion', name: 'creacion', component: Creacion},
     {path: '/gestiones', name:'gestiones',component: Gestiones},
-    {path: '/tablas', name:'tablas',component: Tablas},
+    {path: '/tablas/:id', name:'tablas',component: Tablas},
     {path: '/temporadas', name:'temporadas',component: Temporadas}
 ];
 
