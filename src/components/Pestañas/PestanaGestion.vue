@@ -36,6 +36,13 @@
                 </div>
             </vs-tab>
         </div>
+        <div>
+            <vs-tab @click="colorx = 'success'" label="Arbitros">
+                <div class="con-tab-ejemplo">
+                    <Arbitro/>
+                </div>
+            </vs-tab>
+        </div>
     </vs-tabs>
 </div>
 </template>
@@ -47,12 +54,13 @@
     import Estadio from "../Formularios/Gestiones/Estadio"
     import BotonesAccion from "../Formularios/Gestiones/BotonesAccion"
     import Ciudad from "../Formularios/Gestiones/Ciudad"
+    import Arbitro from "../Formularios/Gestiones/Arbitro"
         export default {
         name: "PestanaGestion",
         data:()=>({
             colorx: 'success'
         }),
-        components: {Equipo, Entrenador, Jugador, Estadio, Ciudad, BotonesAccion}
+        components: {Equipo, Entrenador, Jugador, Estadio, Ciudad, BotonesAccion, Arbitro}
     }
 </script>
 
