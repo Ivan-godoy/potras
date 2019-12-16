@@ -122,6 +122,7 @@
         name: "Entrenador",
         data(){
           return{
+            Id:'',
             selected:[],
             errorsNom: [],
             errorsLug: [],
@@ -161,6 +162,7 @@
               )
             },
           handleSelected(tr) {
+            this.Id = tr.id;
             this.NombreEntrenador = tr.nombre;
             this.NacionalidadEntrenador = tr.nacionalidad;
             this.LugarNacimiento = tr.lugar_nacimiento;
@@ -223,7 +225,7 @@
             data.append('fecha_nacimiento', this.FechaNacimiento);
             data.append('nacionalidad', this.NacionalidadEntrenador);
             data.append('lugar_nacimiento', this.LugarNacimiento);
-            axios.put('http://134.209.172.114/api/entrenadores/'+'\\', data,{
+            axios.put('http://134.209.172.114/api/entrenadores/'+this.Id+'\\', data,{
               headers:{
                 'Content-Type': 'multipart/form-data'
               }
@@ -243,7 +245,7 @@
             data.append('fecha_nacimiento', this.FechaNacimiento);
             data.append('nacionalidad', this.NacionalidadEntrenador);
             data.append('lugar_nacimiento', this.LugarNacimiento);
-            axios.delete('http://134.209.172.114/api/entrenadores/'+'\\', data,{
+            axios.delete('http://134.209.172.114/api/entrenadores/'+this.Id+'\\', data,{
               headers:{
                 'Content-Type': 'multipart/form-data'
               }
