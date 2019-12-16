@@ -6,7 +6,7 @@
       </div>
 
       <div>
-        <TablaJugador id="tablaJugador" titulo="Formulario Jugador"/>
+        <TablaJugador :equipo_id="id" id="tablaJugador" titulo="Formulario Jugador"/>
       </div>
     </div>
   </div>
@@ -15,6 +15,7 @@
 <script>
   import FormJugador from "./Formularios/Creacion/FormJugador";
   import TablaJugador from "./Tablas/TablaJugador";
+  import axios from "axios";
     export default {
         name: "Popup",
         components:{TablaJugador, FormJugador},

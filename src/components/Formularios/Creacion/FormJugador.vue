@@ -79,12 +79,12 @@
 
 <script>
   import Axios from 'axios'
-  var fs = require('fs')
+
     export default {
         name: "FormJugador",
         props:{
             titulo: null,
-            id_equipo: null,
+            id_equipo: Number
         },
         data(){
             return {

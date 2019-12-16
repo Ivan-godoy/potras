@@ -23,11 +23,11 @@
           <template slot-scope="{data}">
             <vs-tr :key="indextr" v-for="(indextr) in jugadores" >
               <vs-td :data="indextr.nombre">
-                {{indextr.jugador.nombre}}
+                {{indextr.jugadores.nombre}}
               </vs-td>
 
               <vs-td :data="indextr.nacionalidad">
-                {{indextr.jugador.nacionalidad}}
+                {{indextr.jugadores.nacionalidad}}
               </vs-td>
 
               <vs-td :data="indextr.dorsal">
@@ -54,13 +54,17 @@
                 dorsal: null
             }
         },
-        mounted() {
-            axios.get('http://134.209.172.114/api/jugadores/').then(
-                res =>(
-                    this.jugadores = res.data
-                )
-            )
+      props:{equipo_id:Number},
+      methods:{
+        CargarJugadores: function () {
+          alert("se ejecuta")
+          axios.get('http://134.209.172.114/api/equipos/'+this.equipo_id+'/').then(
+                  res =>(
+                          this.jugadores = res.data
+                  )
+          )
         }
+      }
     }
 </script>
 <style scoped lang="stylus">

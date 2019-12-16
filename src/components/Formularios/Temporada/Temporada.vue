@@ -65,14 +65,8 @@
                                 <vs-row vs-w="12">
                                     <div>
                                         <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
-                                            <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="add" style="margin-right: 10px"></vs-button>
-                                            <vs-popup class="crear_temporada"  title="Crear Temporada" :active.sync="popupActivo">
-                                                <p>Hola Guapo, creemos una temporada</p>
-                                            </vs-popup>
-                                            <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="warning" icon="touch_app"></vs-button>
-                                            <vs-popup class="ver_temporada"  title="Ver Temporada" :active.sync="popupActivo1">
-                                                <p>Hola Guapo, miremos como va la temporada</p>
-                                            </vs-popup>
+                                            <vs-button  disabled id="btnVerTemporada"   vs-type="gradient" size="medium" color="success" icon="add" style="margin-right: 10px"></vs-button>
+                                            <vs-button id="btnCrearEncuentro" @click="crearTemporada" vs-type="flat" size="medium" color="warning" icon="touch_app"></vs-button>
                                         </vs-col>
                                     </div>
                                 </vs-row>
@@ -90,17 +84,17 @@
     export default {
         name: "Temporada",
         methods:{
+            crearTemporada: function(){
+              document.getElementById("btnVerTemporada").disabled = false
+              document.getElementById("btnCrearEncuentro").disabled = true
+            },
             successUpload(){
                 this.$vs.notify({color:'success',title:'Upload Success',text:'Lorem ipsum dolor sit amet, consectetur'})
             },
             GuardarTemporada: function() {
-                let data = new FormData();
-                data.append('fecha_inicio', this.fechaInicio);
-                data.append('fecha_final', this.fechaFinal);
-                Axios.post('http://134.209.172.114/api/temporadas/', data, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
+                Axios.post('http://134.209.172.114/api/temporadas/', {
+                    fecha_inicio: this.fechaInicio,
+                    fecha_final: this.fechaFinal
                     }
                 ).then(this.openConfirm())
             },

@@ -11,7 +11,6 @@ const $ = require('jquery')
 window.$ = $
 
 
-
 Vue.config.productionTip = false;
 Vue.use(Vuesax);
 Vue.use(Vuex);
