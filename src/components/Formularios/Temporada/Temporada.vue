@@ -1,23 +1,22 @@
 <template>
-    <vs-row vs-justify="center">
-        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="6">
-            <vs-card actionable class="cardx" >
+    <vs-row vs-justify="center" vs-w="12">
+        <vs-col id="form" type="flex" vs-justify="center" vs-align="center" vs-w="4">
+            <vs-card actionable class="cardx">
                 <div slot="header">
                     <h3>
-                        Creacion de Temporada
+                        Creacion Temporada
                     </h3>
                 </div>
-                <div>
-                    <div class="centerx default-input">
-                        <div class="contenedor">
-                            <vs-col>
-                                <h6>Fecha de Inicio de Temporada</h6>
-                                <vs-input type="date" class="inputx" v-model="fechaInicio"/>
-                            </vs-col>
-                            <vs-col>
-                                <h6>Fecha de Fin de Temporada</h6>
-                                <vs-input type="date" class="inputx" v-model="fechaFinal"/>
-                            </vs-col>
+                <div class="row contenedor centerx default-input">
+                    <div class="col">
+                        <div class="row">
+                            <vs-input label="Fecha de Inicio de Temporada" type="date" class="inputx" v-model="fechaInicio"/>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <vs-input label="Fecha de Fin de Temporada" type="date" class="inputx" v-model="fechaFinal"/>
                         </div>
                     </div>
                 </div>
@@ -27,15 +26,14 @@
                     </vs-row>
                 </div>
             </vs-card>
-            <vs-list v-if="errors.length">
-                <vs-list-header title="¡Ups!" color="danger"/>
-                <vs-list-item icon="clear" color="danger" v-for="error in errors" :title="error">
-                </vs-list-item>
-            </vs-list>
         </vs-col>
-        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="6">
-            <div>
-                <vs-table stripe :data="temporadas" >
+        <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="6">
+            <vs-card actionable class="cardx">
+                <vs-table
+                        pagination
+                        max-items="4"
+                        search
+                        :data="temporadas">
                     <template slot="header">
                         <h3>
                             Temporadas
@@ -43,38 +41,44 @@
                     </template>
                     <template slot="thead">
                         <vs-th>
-                            Fecha Inicio de Temporada
+                            No.
                         </vs-th>
                         <vs-th>
-                            Fecha Fin de Temporada
+                            Fecha Inicio
                         </vs-th>
                         <vs-th>
-                            Acciones
+                            Fecha Final
+                        </vs-th>
+                        <vs-th>
+                            Gestiones
                         </vs-th>
                     </template>
 
                     <template slot-scope="{data}">
-                        <vs-tr :key="indextr" v-for="(indextr) in temporadas" >
-                            <vs-td :data="indextr.fecha_inicio">
-                                {{indextr.fecha_inicio}}
+                        <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
+                            <vs-td :data="data[indextr].id">
+                                {{data[indextr].id}}
                             </vs-td>
-                            <vs-td :data="indextr.fecha_final">
-                                {{indextr.fecha_final}}
+                            <vs-td :data="data[indextr].fecha_inicio">
+                                {{data[indextr].fecha_inicio}}
                             </vs-td>
+
+                            <vs-td :data="data[indextr].fecha_final">
+                                {{data[indextr].fecha_final}}
+                            </vs-td>
+
                             <vs-td>
-                                <vs-row vs-w="12">
-                                    <div>
-                                        <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
-                                            <vs-button  disabled id="btnVerTemporada"   vs-type="gradient" size="medium" color="success" icon="add" style="margin-right: 10px"></vs-button>
-                                            <vs-button id="btnCrearEncuentro" @click="crearTemporada" vs-type="flat" size="medium" color="warning" icon="touch_app"></vs-button>
+                                <vs-row>
+                                        <vs-col  vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
+                                            <vs-button to="/tablas" title="Ver Encuentros"  id="btnVerTemporada"   vs-type="gradient" size="medium" color="success" icon="add" style="margin-right: 10px"></vs-button>
+                                            <vs-button @click="GenerarEncuentros" title="Crear Encuentros" id="btnCrearEncuentro"  vs-type="flat" size="medium" color="warning" icon="touch_app"></vs-button>
                                         </vs-col>
-                                    </div>
                                 </vs-row>
                             </vs-td>
                         </vs-tr>
                     </template>
                 </vs-table>
-            </div>
+            </vs-card>
         </vs-col>
     </vs-row>
 </template>
@@ -84,13 +88,6 @@
     export default {
         name: "Temporada",
         methods:{
-            crearTemporada: function(){
-              document.getElementById("btnVerTemporada").disabled = false
-              document.getElementById("btnCrearEncuentro").disabled = true
-            },
-            successUpload(){
-                this.$vs.notify({color:'success',title:'Upload Success',text:'Lorem ipsum dolor sit amet, consectetur'})
-            },
             GuardarTemporada: function() {
                 Axios.post('http://134.209.172.114/api/temporadas/', {
                     fecha_inicio: this.fechaInicio,
@@ -117,11 +114,14 @@
                     this.errors.push("Es necesario llenar el campo de Fecha de Fin de Temporada.")
                 }
             },
+            GenerarEncuentros: function () {
+                console.log('hola guapo');
+            },
         },
         data(){
             return{
                 errors:[],
-                temporadas: null,
+                temporadas: '',
                 fecha_inicial: null,
                 fecha_final: null,
                 popupActivo1:false,
@@ -140,6 +140,9 @@
     }
 </script>
 <style scoped lang="stylus">
+    #form{
+        margin-right: 50px;
+    }
     .cardx
         margin 15px
     .default-input
