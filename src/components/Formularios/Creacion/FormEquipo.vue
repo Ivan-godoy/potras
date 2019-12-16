@@ -67,7 +67,7 @@
                 if (!this.FechaFundacion){
                     this.errors.push("El campo fecha fundacion es requerido.")
                 }
-                if (! this.file){
+                if (!this.file){
                     this.errors.push("El logo es obligatorio.")
                 }
             },
