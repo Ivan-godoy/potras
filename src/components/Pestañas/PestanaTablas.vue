@@ -43,9 +43,11 @@
 <script>
     import Amonestaciones from "../TablasTemporada/Amonestaciones";
     import Encuentros from "../TablasTemporada/Encuentros";
+    import Goleadores from "../TablasTemporada/Goleadores"
     export default {
         name: "PestanaTablas",
-        components: {Encuentros, Amonestaciones},
+        components: {Goleadores, Encuentros, Amonestaciones},
+        component:{Encuentros},
         data:()=>({
             colorx:'success',
             temporada: null
