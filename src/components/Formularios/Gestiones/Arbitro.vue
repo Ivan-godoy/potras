@@ -114,7 +114,6 @@
                 </vs-table>
             </vs-card>
         </vs-col>
-
     </vs-row>
 </template>
 
@@ -233,7 +232,7 @@
                 data.append('fecha_nacimiento', this.FechaNacimiento);
                 data.append('nacionalidad', this.NacionalidadArbitro);
                 data.append('lugar_nacimiento', this.LugarNacimiento);
-                axios.delete('http://134.209.172.114/api/arbitros/'+this.Id+'\\', data,{
+                axios.delete('http://134.209.172.114/api/arbitros/'+this.Id+'/', data,{
                     headers:{
                         'Content-Type': 'multipart/form-data'
                     }

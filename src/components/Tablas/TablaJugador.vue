@@ -41,6 +41,7 @@
     </vs-card>
     {{equipo_id}}
   </div>
+  {{equipo_id}}
 </template>
 
 <script>

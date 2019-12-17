@@ -17,6 +17,7 @@ Vue.use(Vuesax);
 Vue.use(Vuex);
 
 
+
 const store = new Vuex.Store({
     state: {
         navActivo: false,

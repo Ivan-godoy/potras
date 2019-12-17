@@ -2,13 +2,13 @@
     <div>
         <vs-tabs :color="colorx">
             <div>
-                <div>
-                    <vs-tab @click="colorx = 'warning'" label="Temporadas">
-                        <div class="con-tab-ejemplo">
-                            <Temporada/>
-                        </div>
-                    </vs-tab>
-                </div>
+                <vs-tab @click="colorx = 'success'" label="Encuentros">
+                    <div class="con-tab-ejemplo">
+                        <Encuentros :id_temporada="temporada"/>
+                    </div>
+                </vs-tab>
+            </div>
+            <div>
                 <vs-tab @click="colorx = 'success'" label="Tabla de Posiciones">
                     <div class="con-tab-ejemplo">
 
@@ -41,13 +41,21 @@
 </template>
 
 <script>
-    import Temporada from "../Formularios/Temporada/Temporada";
+    import Encuentros from "../TablasTemporada/Encuentros";
     export default {
         name: "PestanaTablas",
+        components: {Encuentros},
+        component:{Encuentros},
         data:()=>({
-            colorx:'success'
+            colorx:'success',
+            temporada: null
         }),
-        components:{Temporada}
+        mounted() {
+            let url =  window.location.pathname
+            let array = url.split('/')
+            this.temporada = array[2]
+
+        }
 
     }
 </script>
