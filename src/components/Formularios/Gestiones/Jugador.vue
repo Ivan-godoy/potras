@@ -1,99 +1,78 @@
 <template>
     <vs-row vs-justify="center">
-        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="10">
+        <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="8">
             <div>
-                <vs-table stripe :data="jugadores">
+                <vs-table max-items="8" pagination search :data="jugadores">
                     <template slot="header">
                         <h3>
-                            Jugadores
+                            Vista de Jugadores
                         </h3>
                     </template>
                     <template slot="thead">
                         <vs-th>
-                            Nombre
+                            Nombre Completo
                         </vs-th>
                         <vs-th>
                             Fecha de Nacimiento
                         </vs-th>
                         <vs-th>
-                            Nacionalidad
-                        </vs-th>
-                        <vs-th>
                             Lugar de Nacimiento
                         </vs-th>
                         <vs-th>
-                            Peso
+                            Nacionalidad
                         </vs-th>
-                        <vs-th>
-                            Estatura
-                        </vs-th>
-                        <vs-th>
-                            Imagen
-                        </vs-th>
-                        <vs-th>
-                            Posición
-                        </vs-th>
-                      <vs-th>
-                            Dorsal
-                        </vs-th>
-                        <vs-th>
-                            Acciones
-                        </vs-th>
+                        <vs-th>Dorsal</vs-th>
+                        <vs-th>Equipo Actual</vs-th>
                     </template>
+
                     <template slot-scope="{data}">
-                        <vs-tr :key="indextr" v-for="(indextr) in jugadores" >
-                            <vs-td :data="indextr.nombre">
-                                {{indextr.jugador.nombre}}
+                        <vs-tr :key="indextr" :data="tr" v-for="(tr,indextr) in data" >
+                            <vs-td :data="data[indextr].jugadores[indextr].nombre">
+                                {{data[indextr].jugadores[indextr].nombre}}
                             </vs-td>
 
-                            <vs-td :data="indextr.nacimiento">
-                                {{indextr.jugador.fecha_nacimiento}}
-                            </vs-td>
-                            <vs-td :data="indextr.nacionalidad">
-                                {{indextr.jugador.nacionalidad}}
+                            <vs-td :data="data[indextr].nombre">
+                                {{data[indextr].nombre}}
                             </vs-td>
 
-                            <vs-td :data="indextr.nacionalidad">
-                                {{indextr.jugador.lugar_nacimiento}}
-                            </vs-td>
+<!--                            <vs-td :data="data[indextr].lugar_nacimiento">-->
+<!--                                {{data[indextr].lugar_nacimiento}}-->
+<!--                            </vs-td>-->
 
-                            <vs-td :data="indextr.peso">
-                                {{indextr.jugador.peso}}
-                            </vs-td>
-                            <vs-td :data="indextr.estatura">
-                                {{indextr.jugador.estatura}}
-                            </vs-td>
-                            <vs-avatar :badge="id" size="50px"
-                                       :src="`https://thumbs.dreamstime.com/z/silueta-de-un-jugador-f%C3%BAtbol-del-atleta-que-juega-con-una-bola-en-108740657.jpg`"/>
-                            <vs-td :data="indextr.posicion">
-                                {{indextr.jugador.posicion}}
-                            </vs-td>
-                          <vs-td :data="indextr.dorsal">
-                                {{indextr.dorsal}}
-                            </vs-td>
-                            <vs-td>
-                                <vs-row vs-w="12">
-                                    <div>
-                                        <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
-                                            <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
-                                            <vs-popup class="gestion_Jugador"  title="Editar Jugador" :active.sync="popupActivo">
-                                              <div class="contenedor">
-                                                <FormJugador titulo="Formulario Jugador" :id_equipo="id"/>
-                                              </div>
-                                            </vs-popup>
-                                            <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
-                                            <vs-popup class="gestion_Jugador"  title="Eliminar Jugador" :active.sync="popupActivo1">
-                                                <p>Hola Guapo, ¿vas a eliminarme?</p>
-                                            </vs-popup>
-                                        </vs-col>
-                                    </div>
-                                </vs-row>
-                            </vs-td>
+<!--                            <vs-td :data="data[indextr].nacionalidad">-->
+<!--                                {{data[indextr].nacionalidad}}-->
+<!--                            </vs-td>-->
+<!--                            <vs-td :data="data[indextr].equipo_jugador.dorsal">-->
+<!--                                {{data[indextr].equipo_jugador.dorsal}}-->
+<!--                            </vs-td>-->
+<!--                            <vs-td :data="data[indextr].logo_equipo">-->
+<!--                                <vs-avatar  :src="data[indextr].imagen"/>-->
+<!--                            </vs-td>-->
                         </vs-tr>
                     </template>
                 </vs-table>
             </div>
         </vs-col>
+<!--        <vs-popup  fullscreen :active.sync="popupActivo4" :title="'Ficha de: '+NombreEntrenador">-->
+<!--            <div class="d-flex justify-content-center">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-auto">-->
+<!--                        <FormEntrenador-->
+<!--                                :titulo="'Editando ficha de '+NombreEntrenador"-->
+<!--                                :Accion="accion"-->
+<!--                                :PNombreEntrenador = "NombreEntrenador"-->
+<!--                                :PLugarNacimiento ="LugarNacimiento"-->
+<!--                                :PNacionalidad = "NacionalidadEntrenador"-->
+<!--                                :PFecha = "FechaNacimiento"-->
+<!--                                :PSelectEquipo = "equipo"-->
+<!--                                :IdEntrenador = "id"-->
+<!--                                :urlFoto ="imagen"-->
+<!--                                @recargar="rec"-->
+<!--                        />-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </vs-popup>-->
     </vs-row>
 </template>
 
@@ -105,21 +84,11 @@
         components:{FormJugador},
         data(){
             return{
-                jugadores: null,
-                nombre: null,
-                fecha_nacimeinto: null,
-                lugar_nacimeinto: null,
-                peso: null,
-                estatura: null,
-                imagen: null,
-                posicion: null,
-                dorsal: null,
-                popupActivo:false,
-                popupActivo1:false
+                jugadores: '',
             }
         },
         mounted() {
-            axios.get('http://134.209.172.114/api/jugadores/').then(
+            axios.get('http://134.209.172.114/api/equipos/').then(
                 res =>(
                     this.jugadores = res.data
                 )

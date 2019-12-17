@@ -16,27 +16,6 @@
             </vs-tab>
         </div>
         <div>
-            <vs-tab @click="colorx = 'success'" label="Ciudad">
-                <div class="con-tab-ejemplo">
-                    <Ciudad/>
-                </div>
-            </vs-tab >
-        </div>
-        <div>
-            <vs-tab @click="colorx = 'success'" label="Estadio">
-                <div class="con-tab-ejemplo">
-                    <Estadio/>
-                </div>
-            </vs-tab>
-        </div>
-        <div>
-            <vs-tab @click="colorx = 'success'" label="Jugador">
-                <div class="con-tab-ejemplo">
-                    <Jugador/>
-                </div>
-            </vs-tab>
-        </div>
-        <div>
             <vs-tab @click="colorx = 'success'" label="Arbitros">
                 <div class="con-tab-ejemplo">
                     <Arbitro/>

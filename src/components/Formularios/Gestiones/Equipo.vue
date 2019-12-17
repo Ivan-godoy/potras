@@ -2,102 +2,124 @@
     <vs-row vs-justify="center">
         <vs-col type="flex" class="tarjetas" vs-justify="center" vs-align="center" vs-w="8">
         <div>
-            <vs-table :data="equipos">
+            <vs-table max-items="4" @selected="handleSelected" pagination search :data="equipos">
                 <template slot="header">
                     <h3>
-                        Equipos
+                        Modificacion de Equipos
                     </h3>
                 </template>
                 <template slot="thead">
                     <vs-th>
-                        Nombre del Equipo
+                        nombre
                     </vs-th>
                     <vs-th>
-                        Fecha de Fundación
+                        Fecha fundacion
                     </vs-th>
                     <vs-th>
                         Esquema Habitual
                     </vs-th>
                     <vs-th>
-                        Logo del Equipo
+                        Nombre Estadio
                     </vs-th>
-                    <vs-th>
-                        Estadio
-                    </vs-th>
-                    <vs-th>
-                        Acciones
-                    </vs-th>
+                    <vs-th>Ciudad</vs-th>
+                    <vs-th>Logo</vs-th>
                 </template>
 
                 <template slot-scope="{data}">
-                    <vs-tr :key="indextr" v-for="(indextr) in equipos" >
-                        <vs-td :data="indextr.nombre">
-                            {{indextr.nombre}}
+                    <vs-tr :key="indextr" :data="tr" v-for="(tr,indextr) in data" >
+                        <vs-td :data="data[indextr].nombre">
+                            {{data[indextr].nombre}}
                         </vs-td>
 
-                        <vs-td :data="indextr.fundacion">
-                            {{indextr.fecha_fundacion}}
+                        <vs-td :data="data[indextr].fecha_fundacion">
+                            {{data[indextr].fecha_fundacion}}
                         </vs-td>
 
-                        <vs-td :data="indextr.esquema_habitual">
-                            {{indextr.esquema_habitual}}
+                        <vs-td :data="data[indextr].esquema_habitual">
+                            {{data[indextr].esquema_habitual}}
                         </vs-td>
-                        <vs-avatar :badge="id" size="50px"
-                                   :src="`https://www.photoframemaster.com/res/templates/thumb_small/blue-star-and-gray-soccer.png`"/>
-                        <vs-td :data="indextr.estadio">
-                            {{indextr.estadio.nombre}}
+
+                        <vs-td :data="data[indextr].estadio.nombre">
+                            {{data[indextr].estadio.nombre}}
                         </vs-td>
-                      <vs-td>
-                        <vs-row vs-w="12">
-                          <div>
-                            <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="10">
-                              <vs-button @click="popupActivo=true"  vs-type="gradient" size="medium" color="success" icon="create" style="margin-right: 10px"></vs-button>
-                              <vs-popup class="gestion_Jugador"  title="Editar Jugador" :active.sync="popupActivo">
-                                <div class="contenedor">
-                                  <FormEquipo titulo="Formulario Equipo" :id_equipo="id"/>
-                                </div>
-                              </vs-popup>
-                              <vs-button @click="popupActivo1=true" vs-type="flat" size="medium" color="danger" icon="delete_sweep"></vs-button>
-                              <vs-popup class="gestion_Jugador"  title="Eliminar Jugador" :active.sync="popupActivo1">
-                                <p>Hola Guapo, ¿vas a eliminarme?</p>
-                              </vs-popup>
-                            </vs-col>
-                          </div>
-                        </vs-row>
-                      </vs-td>
+                        <vs-td :data="data[indextr].estadio.ciudad.nombre">
+                            {{data[indextr].estadio.ciudad.nombre}}
+                        </vs-td>
+                        <vs-td :data="data[indextr].logo_equipo">
+                            <vs-avatar  :src="data[indextr].logo_equipo"/>
+                        </vs-td>
                     </vs-tr>
                 </template>
             </vs-table>
         </div>
         </vs-col>
+        <vs-popup  fullscreen :active.sync="popupActivo4" :title="nombreEquipo">
+            <div class="d-flex justify-content-center">
+                <div class="row">
+                    <div class="col-auto">
+                        <FormEquipo
+                            :PNombreEquipo="this.nombreEquipo"
+                            :titulo="'Editando el equipo:'+this.nombreEquipo"
+                            :PEsquema="this.esquemaHabitual"
+                            :PFechaFundacion="this.fechaFundacion"
+                            :PSelectEstadio="this.Estadio"
+                            :Accion="tipo"
+                            :urlImagen="urlImagen"
+                            :EquipoId = "IdEquipo"
+                            @Recargar="Recargar"
+                        />
+                    </div>
+                </div>
+            </div>
+        </vs-popup>
     </vs-row>
 </template>
 
 <script>
   import axios from "axios"
   import FormEquipo from "../Creacion/FormEquipo";
-
   export default {
         name: "Equipo",
-        components: {FormEquipo},
+      components:{FormEquipo},
         data(){
             return{
-                equipos: null,
-                nombre: null,
-                fecha_fundacion: null,
-                esquema_habitual: null,
-                logo_equipo: null,
-                estadio: null,
-                popupActivo:false,
-                popupActivo1:false
+                equipos: '',
+                nombreEquipo: '',
+                esquemaHabitual: '',
+                fechaFundacion: null,
+                Estadio: 0,
+                popupActivo4: false,
+                urlImagen: '',
+                tipo: 2,
+                estado: false,
+                IdEquipo: null
             }
         },
+      methods:{
+            Recargar: function(){
+                this.popupActivo4 = false
+                // this.CargarEquipos()
+                this.estado = true
+            },
+          handleSelected(tr) {
+              this.nombreEquipo = tr.nombre
+              this.popupActivo4 = true
+              this.esquemaHabitual = tr.esquema_habitual
+              this.fechaFundacion = tr.fecha_fundacion
+              this.Estadio = tr.estadio.id
+              this.urlImagen = tr.logo_equipo
+              this.IdEquipo = tr.id
+          },
+          CargarEquipos: function () {
+              axios.get('http://134.209.172.114/api/equipos/').then(
+                  res =>(
+                      this.equipos = res.data
+                  )
+          )},
+      },
         mounted() {
-            axios.get('http://134.209.172.114/api/equipos/').then(
-                res =>(
-                    this.equipos = res.data
-                )
-            )}
+            this.CargarEquipos()
+        }
     }
 </script>
 

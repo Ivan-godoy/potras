@@ -125,7 +125,7 @@
         data(){
             return{
                 selected:[],
-                arbitros: null,
+                arbitros: '',
                 errorsNom: [],
                 errorsLug: [],
                 errorsNa: [],

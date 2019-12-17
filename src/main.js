@@ -9,6 +9,7 @@ import 'material-icons/iconfont/material-icons.css';
 import Vuex from 'vuex';
 const $ = require('jquery')
 window.$ = $
+export const bus = new Vue()
 
 
 Vue.config.productionTip = false;
