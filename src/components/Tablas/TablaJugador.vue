@@ -40,7 +40,7 @@
       </div>
     </vs-card>
   </div>
-  {{equipo_id}}
+
 </template>
 
 <script>

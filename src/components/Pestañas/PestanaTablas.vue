@@ -54,9 +54,7 @@
             let url =  window.location.pathname
             let array = url.split('/')
             this.temporada = array[2]
-
         }
-
     }
 </script>
 
