@@ -49,38 +49,60 @@
                 <div class="container-fluid" >
                     <div class="row">
                         <div class="col">
-                            <vs-divider color="warning">Formulario Goles</vs-divider>
+                            <vs-divider color="warning">Acciones del Partido</vs-divider>
                             <div class="form-group">
-                                <vs-select
-                                        disabled
-                                        id="SelectEquipoG"
-                                        autocomplete
-                                        label="Figuras"
-                                        v-model="SelectEquipoGoleador"
-                                        @change="BuscarJugador"
-                                >
-                                    <vs-select-item :value="0" text="Seleccione una opcion"/>
-                                    <vs-select-item :value="idEquipo_Local" :text="equipo_local"/>
-                                    <vs-select-item :value="idEquipo_Visitante" :text="equipo_visitante"/>
-                                </vs-select>
+                                <label for="">Fecha de Juego</label>
+                                <input type="datetime-local" id="Fecha" v-model="FechaEncuentro2" class="form-control form-control-sm">
                             </div>
                             <div class="form-group">
-                                <vs-select
+                                <button @click="Jugar" id="Jugar" class="btn btn-outline-success btn-sm btn-lg btn-block">Jugar Partido</button>
+                                <hr>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Equipo</label>
+                                <select
+                                        disabled
+                                        class="form-control form-control-sm"
+                                        id="SelectEquipoG"
+                                        v-model="SelectEquipoGoleador"
+                                        @change="BuscarJugador">
+                                    <option :value="0">Seleccione una opcion</option>
+                                    <option :value="idEquipo_Local">{{equipo_local}}</option>
+                                    <option :value="idEquipo_Visitante">{{equipo_visitante}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Jugador</label>
+                                <select
+                                        class="form-control form-control-sm"
                                         id="SelectGoleador"
                                         disabled
-                                        autocomplete
-                                        label="Figuras"
                                         v-model="JugadorGoleador"
                                 >
-                                    <vs-select-item
-                                            :value="item.id" :text="item.nombre" v-for="item in opciones"/>
-                                </vs-select>
+                                    <option :value="item.id" v-for="item in opciones">{{item.nombre}}</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <vs-button id="BtnGol" @click="RegistrarGol" disabled="" color="primary" type="border">Registrar Gol</vs-button>
+                                <button id="BtnGol" @click="RegistrarGol" class="btn btn-sm btn-outline-primary" disabled>Registrar Gol</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tarjetas de Falta</label>
+                                <select
+                                        class="form-control form-control-sm"
+                                        id="SelectTarjetas"
+                                        disabled
+                                        v-model="Amonestacion"
+                                >
+                                    <option value="1">Tarjeta Amarilla</option>
+                                    <option value="2">Tarjeta Roja</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button id="BtnAmonestacion"
+                                        class="btn btn-outline-dark btn-sm" disabled @click="Falta">Registrar Amonestacion</button>
                             </div>
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-8">
                             <vs-divider color="primary">Informacion del Partido</vs-divider>
                             <div class="row">
                                 <div class="col d-flex justify-content-center">
@@ -91,12 +113,17 @@
                                     <div class="row"> <vs-avatar v-if="urlVisitante" :src="'http://134.209.172.114'+urlVisitante" size="140px"/></div>
                                 </div>
                             </div>
-                            <br>
                             <div class="row">
-                                <button @click="Jugar" class="btn btn-outline-success btn-sm btn-lg btn-block">Jugar Partido</button>
+                                <div class="col d-flex justify-content-center">
+                                    <h1 class="font-weight-bold size" v-if="resultados">{{resultados[0].resultado_local}}</h1>
+                                </div>
+                                <div class="col d-flex justify-content-center">
+                                    <h1 class="font-weight-bold size" v-if="resultados">{{resultados[0].resultado_visita}}</h1>
+                                </div>
                             </div>
+                            <br>
+                            <hr>
                         </div>
-                        <div class="col"></div>
                     </div>
                 </div>
             </vs-popup>
@@ -114,6 +141,9 @@ import axios from 'axios';
         },
         data() {
             return {
+                SelectArbitro: '',
+                Arbitro:'',
+                Amonestacion:'',
                 JugadorGoleador: '',
                 SelectEquipoGoleador:'',
                 JugadoresPosibles: '',
@@ -134,11 +164,47 @@ import axios from 'axios';
                 jugador_equipo:'',
                 idjugadorequipo:'',
                 equipo_jugador: '',
-                opciones: []
+                opciones: [],
+                idEstadio:'',
+                FechaEncuentro2: '',
+                resultados: ''
             }
         },
         methods: {
+            Falta: function(){
+                var color = ''
+                if (this.Amonestacion == 1){
+                    color = 'warning'
+                }else if(this.Amonestacion == 2){
+                    color = 'danger'
+                }
+                axios.post('http://134.209.172.114/api/amonestaciones/crear/',{
+                    partido_jugado: this.Id,
+                    amonestacion: this.Amonestacion,
+                    jugador:this.JugadorGoleador,
+                    equipo:this.SelectEquipoGoleador
+                }).then(
+                    this.acceptAlert(color, 'Se ha registrado la amonestacion')
+                )
+            },
+            Resultado: function(){
+                axios.get('http://134.209.172.114/api/resultado/'+this.Id).then(
+                    res =>(
+                        this.resultados = res.data
+                    )
+                )
+            },
             Jugar: function(){
+                document.getElementById("Fecha").disabled = true
+                document.getElementById("Jugar").disabled = true
+                axios.put('http://134.209.172.114/api/encuentro/jugar/'+this.Id,{
+                    temporada: this.id_temporada,
+                    estadio: this.idEstadio,
+                    fecha_partido_jugado: this.FechaEncuentro2,
+                    arbitros:1
+                }).then(
+                    alert("hecho")
+                )
                 document.getElementById("SelectEquipoG").disabled = false
             },
             RegistrarGol: function(){
@@ -147,8 +213,16 @@ import axios from 'axios';
                   jugador:this.JugadorGoleador,
                   equipo:this.SelectEquipoGoleador
               }).then(
-                  alert("Se guardo")
+                  this.acceptAlert('success', 'Se ha registrado el gol'),
+                  this.Resultado()
               )
+            },
+            acceptAlert(color, des){
+                this.$vs.notify({
+                    color:color,
+                    title:'Registrado',
+                    text:des
+                })
             },
             BuscarJugador: function(){
                 this.opciones = []
@@ -158,7 +232,9 @@ import axios from 'axios';
                       res=>(
                          this.JugadoresPosibles = res.data,
                          this.introduccionJug(this.JugadoresPosibles),
-                         document.getElementById("SelectGoleador").disabled = false
+                         document.getElementById("SelectGoleador").disabled = false,
+                         document.getElementById("SelectTarjetas").disabled = false,
+                         document.getElementById("BtnAmonestacion").disabled = false
                   )
                   )
 
@@ -181,6 +257,8 @@ import axios from 'axios';
                 this.urlLocal = tr.equipo_local.logo_equipo;
                 this.urlVisitante = tr.equipo_visitante.logo_equipo;
                 this.jugador_equipo = tr.equipo_jugador;
+                this.idEstadio = tr.equipo_local.estadio
+                this.Resultado()
             },
 
         },
@@ -195,6 +273,7 @@ import axios from 'axios';
 
 </script>
 
-<style scoped>
-
+<style scoped lang="stylus">
+.size
+    font-size 90px
 </style>
