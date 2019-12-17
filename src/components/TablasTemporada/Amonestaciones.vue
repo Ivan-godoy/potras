@@ -7,9 +7,7 @@
                         max-item="3"
                         :data="amarillas">
                     <template slot="header">
-                        <h3>
-                            Amarillas
-                        </h3>
+                        <vs-divider color="warning">Jugadores con tarjeta amarilla</vs-divider>
                     </template>
                     <template slot="thead">
                         <vs-th>
@@ -46,9 +44,7 @@
                         max-item="3"
                         :data="rojas">
                     <template slot="header">
-                        <h3>
-                            Rojas
-                        </h3>
+                        <vs-divider color="danger">Jugadores con tarjeta roja</vs-divider>
                     </template>
                     <template slot="thead">
                         <vs-th>

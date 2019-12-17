@@ -203,7 +203,7 @@ import axios from 'axios';
                     fecha_partido_jugado: this.FechaEncuentro2,
                     arbitros:1
                 }).then(
-                    alert("hecho")
+                    this.acceptAlert('success','Ha empezado el juego')
                 )
                 document.getElementById("SelectEquipoG").disabled = false
             },
