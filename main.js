@@ -4,12 +4,10 @@ function createWindow () {
     // Create the browser window.
     let win = new BrowserWindow({
         width: 800,
-        height: 800,
-        fullscreen: true
+        height: 800
     });
 
     // and load the index.html of the app.
-    win.setFullScreen(true);
     win.loadFile('dist/index.html')
 }
 
