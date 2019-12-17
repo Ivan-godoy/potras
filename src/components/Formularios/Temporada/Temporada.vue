@@ -102,6 +102,13 @@
                     text: 'Se ha guardado exitosamente las Fechas de Temporada:'+this.fechaInicio+' al ' + this.fechaFinal
                 })
             },
+            openConfirmTemporada(){
+                this.$vs.dialog({
+                    color: 'success',
+                    title: `Guardado`,
+                    text: 'Se ha Crearon los encunetros de la temporada'
+                })
+            },
             FormTempo: function () {
                 if (this.fechaInicio && this.fechaFinal){
                     this.GuardarTemporada()
@@ -116,9 +123,7 @@
             },
             GenerarEncuentros: function (id) {
                 Axios.get('http://134.209.172.114/api/encuentros/generar/'+id).then(
-                    function (res) {
-                        alert("hols")
-                    }
+                    this.openConfirmTemporada()
                 )
             },
         },
