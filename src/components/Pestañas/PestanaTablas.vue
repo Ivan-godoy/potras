@@ -18,7 +18,7 @@
             <div>
                 <vs-tab @click="colorx = 'danger'" label="Tabla de Goleadores">
                     <div class="con-tab-ejemplo">
-
+                      <Goleadores :id_temporada="temporada"/>
                     </div>
                 </vs-tab>
             </div>
@@ -42,9 +42,10 @@
 
 <script>
     import Encuentros from "../TablasTemporada/Encuentros";
+    import Goleadores from "../TablasTemporada/Goleadores";
     export default {
         name: "PestanaTablas",
-        components: {Encuentros},
+        components: {Goleadores, Encuentros},
         component:{Encuentros},
         data:()=>({
             colorx:'success',
