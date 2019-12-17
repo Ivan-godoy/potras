@@ -113,7 +113,16 @@
                                     <div class="row"> <vs-avatar v-if="urlVisitante" :src="'http://134.209.172.114'+urlVisitante" size="140px"/></div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col d-flex justify-content-center">
+                                    <h1 class="font-weight-bold size" v-if="resultados">{{resultados[0].resultado_local}}</h1>
+                                </div>
+                                <div class="col d-flex justify-content-center">
+                                    <h1 class="font-weight-bold size" v-if="resultados">{{resultados[0].resultado_visita}}</h1>
+                                </div>
+                            </div>
                             <br>
+                            <hr>
                         </div>
                     </div>
                 </div>
@@ -157,7 +166,8 @@ import axios from 'axios';
                 equipo_jugador: '',
                 opciones: [],
                 idEstadio:'',
-                FechaEncuentro2: ''
+                FechaEncuentro2: '',
+                resultados: ''
             }
         },
         methods: {
@@ -175,6 +185,13 @@ import axios from 'axios';
                     equipo:this.SelectEquipoGoleador
                 }).then(
                     this.acceptAlert(color, 'Se ha registrado la amonestacion')
+                )
+            },
+            Resultado: function(){
+                axios.get('http://134.209.172.114/api/resultado/'+this.Id).then(
+                    res =>(
+                        this.resultados = res.data
+                    )
                 )
             },
             Jugar: function(){
@@ -196,7 +213,8 @@ import axios from 'axios';
                   jugador:this.JugadorGoleador,
                   equipo:this.SelectEquipoGoleador
               }).then(
-                  this.acceptAlert('success', 'Se ha registrado el gol')
+                  this.acceptAlert('success', 'Se ha registrado el gol'),
+                  this.Resultado()
               )
             },
             acceptAlert(color, des){
@@ -240,6 +258,7 @@ import axios from 'axios';
                 this.urlVisitante = tr.equipo_visitante.logo_equipo;
                 this.jugador_equipo = tr.equipo_jugador;
                 this.idEstadio = tr.equipo_local.estadio
+                this.Resultado()
             },
 
         },
@@ -254,6 +273,7 @@ import axios from 'axios';
 
 </script>
 
-<style scoped>
-
+<style scoped lang="stylus">
+.size
+    font-size 90px
 </style>
