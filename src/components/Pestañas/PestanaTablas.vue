@@ -25,7 +25,7 @@
             <div>
                 <vs-tab @click="colorx = 'warning'" label="Tabla de Amonestaciones">
                     <div class="con-tab-ejemplo">
-
+                        <Amonestaciones/>
                     </div>
                 </vs-tab>
             </div>
@@ -41,11 +41,12 @@
 </template>
 
 <script>
+    import Amonestaciones from "../TablasTemporada/Amonestaciones";
     import Encuentros from "../TablasTemporada/Encuentros";
-    import Goleadores from "../TablasTemporada/Goleadores";
+    import Goleadores from "../TablasTemporada/Goleadores"
     export default {
         name: "PestanaTablas",
-        components: {Goleadores, Encuentros},
+        components: {Goleadores, Encuentros, Amonestaciones},
         component:{Encuentros},
         data:()=>({
             colorx:'success',
