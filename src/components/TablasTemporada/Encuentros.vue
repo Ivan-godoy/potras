@@ -48,28 +48,58 @@
             <vs-popup :active.sync="popupActivo4" fullscreen :title="'Partido '+equipo_local+' vs '+equipo_visitante">
                 <div class="container-fluid" >
                     <div class="row">
+                        <div class="col">
+                            <vs-divider color="warning">Formulario Goles</vs-divider>
+                            <div class="form-group">
+                                <vs-select
+                                        disabled
+                                        id="SelectEquipoG"
+                                        autocomplete
+                                        label="Figuras"
+                                        v-model="SelectEquipoGoleador"
+                                        @change="BuscarJugador"
+                                >
+                                    <vs-select-item :value="0" text="Seleccione una opcion"/>
+                                    <vs-select-item :value="idEquipo_Local" :text="equipo_local"/>
+                                    <vs-select-item :value="idEquipo_Visitante" :text="equipo_visitante"/>
+                                </vs-select>
+                            </div>
+                            <div class="form-group">
+                                <vs-select
+                                        id="SelectGoleador"
+                                        disabled
+                                        autocomplete
+                                        label="Figuras"
+                                        v-model="JugadorGoleador"
+                                >
+                                    <vs-select-item
+                                            :value="item.id" :text="item.nombre" v-for="item in opciones"/>
+                                </vs-select>
+                            </div>
+                            <div class="form-group">
+                                <vs-button id="BtnGol" @click="RegistrarGol" disabled="" color="primary" type="border">Registrar Gol</vs-button>
+                            </div>
+                        </div>
                         <div class="col-sm-5">
                             <vs-divider color="primary">Informacion del Partido</vs-divider>
                             <div class="row">
-                                <div class="col">
-                                    <div class="row text-center">Equipo Local</div>
-                                    <div class="row"><vs-avatar size="200px"  :src="'http://134.209.172.114'+urlLocal"/></div>
-
+                                <div class="col d-flex justify-content-center">
+                                    <div class="row"><vs-avatar v-if="urlLocal" size="140px"  :src="'http://134.209.172.114'+urlLocal"/></div>
                                 </div>
-                                <div class="col">
 
-                                </div>
-                                <div class="col">
-                                    <div class="row text-center">Equipo Visitante</div>
-                                    <div class="row"> <img :src="'http://134.209.172.114'+urlVisitante" class="card-img-top"
-                                                           size="200px"></div>
+                                <div class="col d-flex justify-content-center">
+                                    <div class="row"> <vs-avatar v-if="urlVisitante" :src="'http://134.209.172.114'+urlVisitante" size="140px"/></div>
                                 </div>
                             </div>
+                            <br>
+                            <div class="row">
+                                <button @click="Jugar" class="btn btn-outline-success btn-sm btn-lg btn-block">Jugar Partido</button>
+                            </div>
                         </div>
+                        <div class="col"></div>
                     </div>
                 </div>
             </vs-popup>
-            <pre>{{ selected }}</pre>
         </div>
     </vs-col>
 </vs-row>
@@ -84,6 +114,9 @@ import axios from 'axios';
         },
         data() {
             return {
+                JugadorGoleador: '',
+                SelectEquipoGoleador:'',
+                JugadoresPosibles: '',
                 encuentros: '',
                 equipo_local: '',
                 equipo_visitante: '',
@@ -101,9 +134,42 @@ import axios from 'axios';
                 jugador_equipo:'',
                 idjugadorequipo:'',
                 equipo_jugador: '',
+                opciones: []
             }
         },
         methods: {
+            Jugar: function(){
+                document.getElementById("SelectEquipoG").disabled = false
+            },
+            RegistrarGol: function(){
+              axios.post('http://134.209.172.114/api/goles/crear/',{
+                  partido_jugado:this.Id,
+                  jugador:this.JugadorGoleador,
+                  equipo:this.SelectEquipoGoleador
+              }).then(
+                  alert("Se guardo")
+              )
+            },
+            BuscarJugador: function(){
+                this.opciones = []
+              if (this.SelectEquipoGoleador != 0){
+                  console.log(this.SelectEquipoGoleador)
+                  axios.get('http://134.209.172.114/api/equipos/'+this.SelectEquipoGoleador+'/').then(
+                      res=>(
+                         this.JugadoresPosibles = res.data,
+                         this.introduccionJug(this.JugadoresPosibles),
+                         document.getElementById("SelectGoleador").disabled = false
+                  )
+                  )
+
+              }
+            },
+            introduccionJug: function(jugadores){
+                for (let i = 0; i < jugadores.jugadores.length; i++){
+                    this.opciones.push(jugadores.jugadores[i])
+                }
+                document.getElementById("BtnGol").disabled = false
+            },
             handleSelected(tr){
                 this.Id = tr.id;
                 this.equipo_local = tr.equipo_local.nombre;
@@ -115,19 +181,6 @@ import axios from 'axios';
                 this.urlLocal = tr.equipo_local.logo_equipo;
                 this.urlVisitante = tr.equipo_visitante.logo_equipo;
                 this.jugador_equipo = tr.equipo_jugador;
-                axios.get('http://134.209.172.114/api/jugadores/').then(
-                    res =>{
-                        this.jugadoreslocal = res.data;
-                        if (this.jugadoreslocal === this.idEquipo_Local){
-                            console.log("hola");
-                        }
-                    }
-                );
-                    axios.get('http://134.209.172.114/api/jugadores/').then(
-                        res =>{
-                            this.jugadoresvisitante = res.data;
-                        }
-                    );
             },
 
         },
