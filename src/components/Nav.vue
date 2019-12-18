@@ -12,7 +12,6 @@
                 </h4>
 
             </div>
-            <vs-sidebar-item index="1" to="/inicio" >Inicio</vs-sidebar-item>
             <vs-sidebar-item to="/creacion" index="2">Creaciones</vs-sidebar-item>
             <vs-sidebar-item to="/gestiones" index="3">Gestiones</vs-sidebar-item>
             <vs-sidebar-item to="/temporadas" index="4">Temporadas</vs-sidebar-item>
