@@ -9,13 +9,6 @@
                 </vs-tab>
             </div>
             <div>
-                <vs-tab @click="colorx = 'success'" label="Tabla de Posiciones">
-                    <div class="con-tab-ejemplo">
-
-                    </div>
-                </vs-tab>
-            </div>
-            <div>
                 <vs-tab @click="colorx = 'danger'" label="Tabla de Goleadores">
                     <div class="con-tab-ejemplo">
                       <Goleadores :id_temporada="temporada"/>
